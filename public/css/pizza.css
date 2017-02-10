@@ -1,0 +1,19 @@
+body {
+	background-image: url(/img/Pizza_photo_clipart.jpg);
+	background-size: 900px 867px;
+	background-repeat: repeat-both;
+}
+
+main {
+	background-color: #ffe79a;
+	width: 50%;
+	padding: 30px;
+	border: 4px solid #292674;
+	margin: 0 auto;
+	font-family: sans-serif;
+	color: #292674;
+}
+
+h1 {
+	text-align: center;
+}

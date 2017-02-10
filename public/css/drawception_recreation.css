@@ -1,0 +1,85 @@
+body {
+    font-family: 'Nunito', Arial, Times, serif;
+    font-weight: 400;
+}
+
+li {
+    border: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 2px 0;
+    border-top: none;
+    color: #555;
+}
+
+h1 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 4em;
+    font-weight: 700;
+}
+
+h1, h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+li:first-child {
+    padding-top: 0px;
+}
+
+li:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+.glyphicon {
+    font-family: "Glyphicons Halflings";
+}
+
+.btn {
+    font-weight: bold;
+    padding: 4px 12px;
+    box-shadow: 0em -0.185rem 0em rgba(0,0,0,0.1) inset;
+    color: white;
+}
+
+.btn-menu {
+    background-color: #0dca4a;
+}
+
+.add-opacity {
+    opacity: 0.75;
+}
+
+.navbar {
+    max-height: 50px;
+    margin-bottom: 0px;
+    background-color: #0ce853;
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.pull-left {
+    margin-left: 5px;
+}
+
+.avatar-sm {
+    margin-top: 6px;
+}
+
+.wrapper {
+    background: #f9f9f9;
+}
+
+.thumbnail_container {
+    min-width: 150px;
+}
+
+.thumbnail {
+    border: 0;
+    height: 125px;
+}
+
+.btn-menu:hover {
+    background-color: #0dd24d;
+    color: white;
+}
