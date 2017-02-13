@@ -7,19 +7,6 @@ body {
     background-color: #fff7cc;
 }
 
-.box1 {
-    height: 100px;
-    width: 100px;
-    background-color: blue;
-}
-
-.navbar {
-    background-color: #294ddb;
-    background-image: linear-gradient(-45deg, #5571e2, #294ddb);
-    border-top: 1px solid #6581fa;
-    border-bottom: 1px solid #192bb9;
-}
-
 .content-box {
     margin-bottom: 100px;
     background-color: #0093dd;
@@ -27,6 +14,13 @@ body {
     color: white;
     text-align: center;
     padding: 5px;
+}
+
+.navbar {
+    background-color: #294ddb;
+    background-image: linear-gradient(-45deg, #5571e2, #294ddb);
+    border-top: 1px solid #6581fa;
+    border-bottom: 1px solid #192bb9;
 }
 
 .navbar-inverse .navbar-toggle:hover {
