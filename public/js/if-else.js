@@ -1,12 +1,15 @@
 "use strict"
 
+
+
 function add(a, b) {
     return a + b;
 }
 
-var studentGrades = [70, 80, 95];
+var studentGrades = [70, 80, 95],
+    gradeAverage = (studentGrades.reduce(add)) / studentGrades.length;
 
-if (((studentGrades.reduce(add, 0)) / studentGrades.length) > 80) {
+if (gradeAverage > 80) {
     console.log("You're awesome");
 } else {
     console.log("You need to practice more");
@@ -16,10 +19,10 @@ if (((studentGrades.reduce(add, 0)) / studentGrades.length) > 80) {
 // ------------------------------------------------
 
 
-var customerName;
-var customerPayment;
-var amountAfterDiscount;
-var finalAmount;
+var customerName,
+    customerPayment,
+    amountAfterDiscount,
+    finalAmount;
 
 function calculateDiscount() {
     if (customerPayment > 200) {
