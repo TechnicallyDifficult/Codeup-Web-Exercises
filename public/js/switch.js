@@ -1,22 +1,30 @@
 "use strict"
 
+// This code generates a random "lucky number" between 0 and 6 inclusive, then calculates and applies a discount based on that number. The price before the discount is applied is hardcoded for the purposes of this exercise.
+
+
+// Generating our "lucky number"
 var luckyNumber = Math.floor(Math.random()* 6),
     finalPay,
     discountAmount,
     customerPay;
 
+// The function that calculates the discount and returns the total after the discount is applied. Takes the discount percentage (represented as an interger) as parameters.
 function calculateFinalPay(discountAmount) {
     var discountAmount = (customerPay * discountAmount) / 100;
     var amountAfterDiscount = customerPay - discountAmount;
     return amountAfterDiscount;
 }
 
+// The hardcoded customer pay value
 customerPay = 60
 
+// Some fancy messages
 console.log("Your total is: $" + customerPay);
 console.log("Your lucky number is... *drumroll*")
 console.log(luckyNumber + "!")
 
+// The switch statement that calls the funcions with the proper parameters and logs a message based on the "lucky number"
 switch (luckyNumber) {
     case 0:
         finalPay = customerPay;
@@ -44,6 +52,7 @@ switch (luckyNumber) {
         break;
 }
 
+// And a switch statement to choose the final message depending on whether the items are free or not
 switch (finalPay) {
     case 0:
         console.log("Have a nice day. OwO")
@@ -56,9 +65,14 @@ switch (finalPay) {
 // ---------------------------------------------------------
 
 
+// This code generates a random number between 1 and 12 inclusive and then logs a message consisting of the name of a month based on that number.
+
+
+// Generating our random number
 var monthNumber = (Math.floor(Math.random()* 12)) + 1,
     month
 
+// Assigning the name of the corresponding month to a variable
 switch (monthNumber) {
     case 1:
         month = "January"
@@ -98,4 +112,5 @@ switch (monthNumber) {
         break;
 }
 
+// Logging the message
 console.log(month);
