@@ -8,28 +8,35 @@
 
 // Generating a random number of cones, as well as i which will serve a small purpose later
 var allCones = Math.floor(Math.random() * 50) + 50,
-	cones,
-	i = 1;
+    cones,
+    i = 1;
+
+// This function logs an ASCII image of a cone to the console
+function printCone() {
+    console.log("      ######\n   #   `   `  #\n # `  `   `  `  #\n#   `   `  ` `  `#\n# `  ` `  `   `  #\n#   `   `  ` `  `#\n # `  `   `  `  #\n  \\/\\/\\/\\/\\/\\/\\/\n   \\/\\/\\/\\/\\/\\/\n    \\/\\/\\/\\/\\/\n     \\/\\/\\/\\/\n      \\/\\/\\/\n       \\/\\/\n        \\/          x" + cones);
+}
 
 console.log(allCones + " cones to sell...");
 
 do {
-	cones = Math.floor(Math.random() * 5) + 1;
-	if (allCones >= cones && cones != 1) {
-		console.log(cones + " cones sold...");
-		allCones -= cones;
-	} else if (allCones >= cones && cones == 1) {
-		console.log(cones + " cone sold...");
-		allCones -= cones;
-	} else {
-		console.log("Cannot sell you " + cones + " cones -- only have " + allCones + "...");
-	}
-	if (i % 3 == 0 && allCones != 1) {
-		console.log(allCones + " cones left...");
-	} else if (i % 3 == 0 && allCones == 1) {
-		console.log(allCones + " cone left...")
-	}
-	i++;
+    cones = Math.floor(Math.random() * 5) + 1;
+    if (allCones >= cones && cones != 1) {
+        console.log(cones + " cones sold...");
+        allCones -= cones;
+        printCone()
+    } else if (allCones >= cones && cones == 1) {
+        console.log(cones + " cone sold...");
+        allCones -= cones;
+        printCone()
+    } else {
+        console.log("Cannot sell you " + cones + " cones -- only have " + allCones + "...");
+    }
+    if (i % 3 == 0 && allCones != 1) {
+        console.log(allCones + " cones left...");
+    } else if (i % 3 == 0 && allCones == 1) {
+        console.log(allCones + " cone left...")
+    }
+    i++;
 } while (allCones > 0);
 
 console.log("Yay! I sold them all!");
@@ -44,6 +51,19 @@ console.log("Yay! I sold them all!");
 var x = 1;
 
 while (x < 65536) {
-	x *= 2;
-	console.log(x);
+    x *= 2;
+    console.log(x);
 }
+
+// ------------------------------------------------------
+
+
+// This code generates a random even number every time the page is refreshed and logs it to the console
+
+function getRandomInt(min, max) {
+  min = Math.ceil(2);
+  max = Math.floor(1024);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+console.log(getRandomInt())
