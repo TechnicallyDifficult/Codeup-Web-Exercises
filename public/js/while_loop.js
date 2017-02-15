@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // This code generates a random number of cones to sell between 50 and 100 inclusive, logs that number, then begins simulating selling them by generating a random number between 1 and 5 inclusive, logging a message, and subtracting that number from the cone total. When all the cones are "sold", a message is logged saying so.
 // If the total is less than the cones to sell, it logs a message saying so and subtracts nothing.

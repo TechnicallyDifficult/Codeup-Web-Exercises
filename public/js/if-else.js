@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // This code takes an array with a set of grades (hardcoded for the purposes of this exercise), averages them together, and logs a message depending on whether or not the calculated average is greater than 80.
 

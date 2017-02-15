@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // This code generates a random "lucky number" between 0 and 6 inclusive, then calculates and applies a discount based on that number. The price before the discount is applied is hardcoded for the purposes of this exercise.
 
