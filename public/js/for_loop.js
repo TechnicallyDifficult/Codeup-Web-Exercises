@@ -1,17 +1,13 @@
 "use strict"
 
-var string;
+var numberOutput;
 
 for (var i = 1; i <= 10; i++) {
-    string = i.toString();
+    numberOutput = (i % 10);
     for (var j = 1; j < i; j++) {
-        if (i != 10) {
-            string += i.toString();
-        } else {
-            string = "0000000000";
+        numberOutput += String(i % 10);
         }
-    }
-    console.log(string);
+    console.log(numberOutput);
 }
 
 
