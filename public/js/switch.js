@@ -49,7 +49,6 @@ switch (luckyNumber) {
     case 5:
         finalPay = 0
         console.log("You get it all for free?!? O_O")
-        break;
 }
 
 // And a switch statement to choose the final message depending on whether the items are free or not
@@ -109,7 +108,6 @@ switch (monthNumber) {
         break;
     case 12:
         month = "December"
-        break;
 }
 
 // Logging the message
