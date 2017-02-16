@@ -22,7 +22,7 @@ var result = identity();
 
 typeof result;
 
-// Undefined
+// Type is the same as whatever you put in the function.
 
 
 // -----------------------------------------------------------
@@ -39,8 +39,7 @@ function getRandomIntBetween(min, max) {
 
 
 function isNumeric(input) {
-    var answer = (!isNaN(input)) ? true : false;
-    return answer;
+    return !isNaN(input);
 }
 
 
@@ -48,31 +47,25 @@ function isNumeric(input) {
 
 
 function add(a, b) {
-    var answer = a + b;
-    return answer;
+    return a + b;
 }
 
 function subtract(a, b) {
-    var answer = a - b;
-    return answer;
+    return a - b;
 }
 
 function multiply(a, b) {
-    var answer = a * b;
-    return answer;
+    return a * b;
 }
 
 function divide(a, b) {
-    var answer = a / b;
-    return answer;
+    return a / b;
 }
 
 function square(a) {
-    answer = multiply(a, a);
-    return answer;
+    return multiply(a, a);
 }
 
 function sumOfSquares(a, b) {
-    answer = add(multiply(a, a), multiply(b, b));
-    return answer;
+    return add(square(a), square(b));
 }
