@@ -18,10 +18,8 @@ for (var i = 1; i <= 100; i++) {
 
 // This code is supposed to be the same as the above, but with only two conditionals. However, it doesn't work right yet.
 
-// var fizzBuzz = "";
-
 // for (var j = 1; j <= 100; j++) {
-//     fizzBuzz = "";
+//     var fizzBuzz = "";
 //     if (j % 3 == 0) {
 //         fizzBuzz += "Fizz"
 //         console.log(fizzBuzz);
