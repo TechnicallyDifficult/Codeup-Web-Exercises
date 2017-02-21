@@ -25,6 +25,8 @@ input {
 	float: left;
 	border-radius: 3px;
 	text-align: right;
+	position: relative;
+	left: 48px;
 }
 
 input:focus {
@@ -49,6 +51,11 @@ input:focus {
 	border: 1px solid #26519a;
 }
 
+.pointKey, #btn-zero, #btn-divide {
+	position: relative;
+	left: 48px;
+}
+
 .operatorKey {
 	background-color: #fbbc05;
 	border: 1px solid #ca9705;
@@ -57,14 +64,26 @@ input:focus {
 .clearKey {
 	background-color: #ea4335;
 	border: 1px solid #a93127;
+	position: relative;
+	left: 48px;
 }
 
 .equalsKey {
 	width: 192px;
 	background-color: #34a853;
 	border: 1px solid #236f37;
+	position: relative;
+	left: 48px;
 }
 
 button:nth-child(1), button:nth-child(6), button:nth-child(11), button:nth-child(16), button:nth-child(20) {
 	clear: left;
+}
+
+main {
+	position: relative;
+	width: 240px;
+	height: 288px;
+	left: -48px;
+	margin: auto;
 }

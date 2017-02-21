@@ -241,3 +241,63 @@ document.getElementById("btn-equals").addEventListener("click", clickEquals, fal
 document.getElementById("btn-power").addEventListener("click", clickPower, false);
 document.getElementById("btn-sqrt").addEventListener("click", clickSqrt, false);
 document.getElementById("btn-negative").addEventListener("click", clickNegative, false);
+
+document.addEventListener("keypress", function (e) {
+    // console.log(e.key);
+    switch (e.key) {
+        case "1":
+            numberButtons[0].click();
+            break;
+        case "2":
+            numberButtons[1].click();
+            break;
+        case "3":
+            numberButtons[2].click();
+            break;
+        case "4":
+            numberButtons[3].click();
+            break;
+        case "5":
+            numberButtons[4].click();
+            break;
+        case "6":
+            numberButtons[5].click();
+            break;
+        case "7":
+            numberButtons[6].click();
+            break;
+        case "8":
+            numberButtons[7].click();
+            break;
+        case "9":
+            numberButtons[8].click();
+            break;
+        case "0":
+            numberButtons[9].click();
+            break;
+        case "+":
+            document.getElementById("btn-plus").click();
+            break;
+        case "-":
+            document.getElementById("btn-minus").click();
+            break;
+        case "*":
+            document.getElementById("btn-times").click();
+            break;
+        case "/":
+            document.getElementById("btn-divide").click();
+            break;
+        case "=":
+            document.getElementById("btn-equals").click();
+            break;
+        case "Enter":
+            document.getElementById("btn-equals").click();
+            break;
+        case "^":
+            document.getElementById("btn-power").click();
+            break;
+        case ".":
+            document.getElementById("btn-point").click();
+            break;
+    }
+});
