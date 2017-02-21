@@ -1,0 +1,70 @@
+button {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	height: 48px;
+	width: 48px;
+	border-radius: 3px;
+    color: white;
+    float: left;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:active {
+    box-shadow: 0 8px 8px rgba(0,0,0,0.4) inset;
+}
+
+input {
+	background-color: #4D5057;
+	border: 1px solid black;
+	color: white;
+	font-size: 18px;
+	float: left;
+	border-radius: 3px;
+	text-align: right;
+}
+
+input:focus {
+	outline: none;
+}
+
+.operand {
+	width: 4.5em;
+}
+
+.operator {
+	width: 1em;
+	text-align: center;
+}
+
+.answer {
+	clear: left;
+}
+
+.numberKey, .pointKey {
+	background-color: #4285f4;
+	border: 1px solid #26519a;
+}
+
+.operatorKey {
+	background-color: #fbbc05;
+	border: 1px solid #ca9705;
+}
+
+.clearKey {
+	background-color: #ea4335;
+	border: 1px solid #a93127;
+}
+
+.equalsKey {
+	width: 192px;
+	background-color: #34a853;
+	border: 1px solid #236f37;
+}
+
+button:nth-child(1), button:nth-child(6), button:nth-child(11), button:nth-child(16), button:nth-child(20) {
+	clear: left;
+}
