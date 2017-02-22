@@ -95,7 +95,7 @@ function clickNegative() {
             leftFieldValue = "";
             leftField.setAttribute("value", leftFieldValue);
         } else {
-            leftFieldValue = (parseFloat(leftFieldValue, 10) * -1).toString(numberSystem);
+            leftFieldValue = (parseFloat(leftFieldValue, numberSystem) * -1).toString(numberSystem);
             leftField.setAttribute("value", leftFieldValue);
         }
     } else {
@@ -106,7 +106,7 @@ function clickNegative() {
             rightFieldValue = "";
             rightField.setAttribute("value", rightFieldValue);
         } else {
-            rightFieldValue = (parseFloat(rightFieldValue, 10) * -1).toString(numberSystem);
+            rightFieldValue = (parseFloat(rightFieldValue, numberSystem) * -1).toString(numberSystem);
             rightField.setAttribute("value", rightFieldValue);
         }
     }
