@@ -43,7 +43,7 @@ input:focus {
 }
 
 .answer {
-	clear: left;
+	left: 0;
 }
 
 .numberKey, .pointKey {
@@ -51,21 +51,14 @@ input:focus {
 	border: 1px solid #26519a;
 }
 
-.pointKey, #btn-zero, #btn-divide {
-	position: relative;
-	left: 48px;
-}
-
 .operatorKey {
 	background-color: #fbbc05;
 	border: 1px solid #ca9705;
 }
 
-.clearKey {
+.clearKey, .converterKey {
 	background-color: #ea4335;
 	border: 1px solid #a93127;
-	position: relative;
-	left: 48px;
 }
 
 .equalsKey {
@@ -76,13 +69,33 @@ input:focus {
 	left: 48px;
 }
 
-button:nth-child(1), button:nth-child(6), button:nth-child(11), button:nth-child(16), button:nth-child(20) {
+.converterKey {
+	font-size: 18px;
+	height: 24px;
+	padding-left: 5px;
+	padding-top: 1px;
+}
+
+#number-system {
+	width: 44px;
+	text-align: center;
+	left: 0;
+}
+
+#btn-scnd {
+	clear: left;
+	font-size: 16px;
+	height: 25px;
+	padding-left: 3px;
+}
+
+button:nth-child(1), button:nth-child(8), button:nth-child(15), button:nth-child(20), button:nth-child(25) {
 	clear: left;
 }
 
 main {
 	position: relative;
-	width: 240px;
+	width: 288px;
 	height: 288px;
 	left: -48px;
 	margin: auto;
