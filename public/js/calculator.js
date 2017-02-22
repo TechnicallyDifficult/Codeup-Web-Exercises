@@ -125,25 +125,27 @@ function hasPoint(value) {
 }
 
 function clickPoint() {
-    if (answerFieldValue != "") {
-        clearAllFields();
-        leftFieldValue += "0";
-    }
-    if (middleFieldValue == "") {
-        if (leftFieldValue == "") {
+    if (numberSystem = 10) {
+        if (answerFieldValue != "") {
+            clearAllFields();
             leftFieldValue += "0";
         }
-        if (!hasPoint(leftFieldValue)) {
-            leftFieldValue += ".";
-            leftField.setAttribute("value", leftFieldValue);
-        }
-    } else if (middleFieldValue != "sqrt") {
-        if (rightFieldValue == "") {
-            rightFieldValue += "0";
-        }
-        if (!hasPoint(rightFieldValue)) {
-            rightFieldValue += ".";
-            rightField.setAttribute("value", rightFieldValue);
+        if (middleFieldValue == "") {
+            if (leftFieldValue == "") {
+                leftFieldValue += "0";
+***REMOVED***
+            if (!hasPoint(leftFieldValue)) {
+                leftFieldValue += ".";
+                leftField.setAttribute("value", leftFieldValue);
+***REMOVED***
+        } else if (middleFieldValue != "sqrt") {
+            if (rightFieldValue == "") {
+                rightFieldValue += "0";
+***REMOVED***
+            if (!hasPoint(rightFieldValue)) {
+                rightFieldValue += ".";
+                rightField.setAttribute("value", rightFieldValue);
+***REMOVED***
         }
     }
 }
