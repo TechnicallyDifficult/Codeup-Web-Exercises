@@ -34,6 +34,9 @@ function clickNegative() {
         if (leftFieldValue == "") {
             leftFieldValue += "-";
             leftField.setAttribute("value", leftFieldValue);
+        } else if (leftFieldValue == "-") {
+            leftFieldValue = "";
+            leftField.setAttribute("value", leftFieldValue);
         } else {
             leftFieldValue = (parseFloat(leftFieldValue) * -1).toString();
             leftField.setAttribute("value", leftFieldValue);
@@ -41,6 +44,9 @@ function clickNegative() {
     } else {
         if (rightFieldValue == "") {
             rightFieldValue += "-";
+            rightField.setAttribute("value", rightFieldValue);
+        } else if (rightFieldValue == "-") {
+            rightFieldValue = "";
             rightField.setAttribute("value", rightFieldValue);
         } else {
             rightFieldValue = (parseFloat(rightFieldValue) * -1).toString();
@@ -299,5 +305,7 @@ document.addEventListener("keypress", function (e) {
         case ".":
             document.getElementById("btn-point").click();
             break;
+        case "_":
+            document.getElementById("btn-negative").click();
     }
 });
