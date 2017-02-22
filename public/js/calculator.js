@@ -112,10 +112,19 @@ function clickNegative() {
     }
 }
 
+function hasPoint(value) {
+    var array = value.split(""),
+        point = false;
+        array.forEach(function (element, index, array) {
+            if (element == ".") {
+                point = true;
+***REMOVED***
+        });
+        return point;
+
+}
+
 function clickPoint() {
-    var leftFieldArray,
-        rightFieldArray,
-        point;
     if (answerFieldValue != "") {
         clearAllFields();
         leftFieldValue += "0";
@@ -124,14 +133,7 @@ function clickPoint() {
         if (leftFieldValue == "") {
             leftFieldValue += "0";
         }
-        leftFieldArray = leftFieldValue.split("");
-        point = false;
-        leftFieldArray.forEach(function (element, index, array) {
-            if (element == ".") {
-                point = true;
-***REMOVED***
-        });
-        if (!point) {
+        if (!hasPoint(leftFieldValue)) {
             leftFieldValue += ".";
             leftField.setAttribute("value", leftFieldValue);
         }
@@ -139,14 +141,7 @@ function clickPoint() {
         if (rightFieldValue == "") {
             rightFieldValue += "0";
         }
-        rightFieldArray = rightFieldValue.split("");
-        point = false;
-        rightFieldArray.forEach(function (element, index, array) {
-            if (element == ".") {
-                point = true;
-***REMOVED***
-        });
-        if (!point) {
+        if (!hasPoint(rightFieldValue)) {
             rightFieldValue += ".";
             rightField.setAttribute("value", rightFieldValue);
         }
@@ -224,7 +219,7 @@ function convertBase(x) {
 }
 
 function convertToHex() {
-    if (numberSystem != 16) {
+    if (numberSystem != 16 && !hasPoint(leftFieldValue) && !hasPoint(rightFieldValue) && !hasPoint(answerFieldValue)) {
         baseField.setAttribute("value", "Hex");
         convertBase(16);
         numberSystem = 16;
@@ -232,7 +227,7 @@ function convertToHex() {
 }
 
 function convertToBin() {
-    if (numberSystem != 2) {
+    if (numberSystem != 2 && !hasPoint(leftFieldValue) && !hasPoint(rightFieldValue) && !hasPoint(answerFieldValue)) {
         baseField.setAttribute("value", "Bin");
         convertBase(2);
         numberSystem = 2;
@@ -240,7 +235,7 @@ function convertToBin() {
 }
 
 function convertToDec() {
-    if (numberSystem != 10) {
+    if (numberSystem != 10 && !hasPoint(leftFieldValue) && !hasPoint(rightFieldValue) && !hasPoint(answerFieldValue)) {
         baseField.setAttribute("value", "Dec");
         convertBase(10);
         numberSystem = 10;
@@ -248,7 +243,7 @@ function convertToDec() {
 }
 
 function convertToOct() {
-    if (numberSystem != 8) {
+    if (numberSystem != 8 && !hasPoint(leftFieldValue) && !hasPoint(rightFieldValue) && !hasPoint(answerFieldValue)) {
         baseField.setAttribute("value", "Oct");
         convertBase(8);
         numberSystem = 8;
