@@ -125,7 +125,7 @@ function hasPoint(value) {
 }
 
 function clickPoint() {
-    if (numberSystem = 10) {
+    if (numberSystem == 10) {
         if (answerFieldValue != "") {
             clearAllFields();
             leftFieldValue += "0";
@@ -155,9 +155,12 @@ function clickOperator() {
         leftFieldValue = "0";
         leftField.setAttribute("value", leftFieldValue);
     }
-    if (answerFieldValue != "") {
+    if (answerFieldValue != "" && !(numberSystem != 10 && hasPoint(answerFieldValue))) {
         leftFieldValue = answerFieldValue;
         leftField.setAttribute("value", leftFieldValue.toUpperCase());
+        clearField("right");
+        clearField("answer");
+    } else if (answerFieldValue != "" && (numberSystem != 10 && hasPoint(answerFieldValue))) {
         clearField("right");
         clearField("answer");
     }
@@ -200,9 +203,11 @@ function clickSqrt() {
 }
 
 function clickPercent() {
-    clickOperator();
-    middleFieldValue = "percent";
-    middleField.setAttribute("value", "%");
+    if (numberSystem == 10) {
+        clickOperator();
+        middleFieldValue = "percent";
+        middleField.setAttribute("value", "%");
+    }
 }
 
 function convertBase(x) {
@@ -299,7 +304,7 @@ function performOperation(a, b, operator) {
         case "power":
             return power(parseFloat(a, numberSystem), parseFloat(b, numberSystem)).toString(numberSystem);
         case "sqrt":
-            return Math.sqrt(a);
+            return Math.sqrt(parseFloat(a, numberSystem)).toString(numberSystem);
         case "percent":
             return ((parseFloat(a, numberSystem) * parseFloat(b, numberSystem)) / 100).toString(numberSystem);
     }
@@ -327,9 +332,9 @@ function clickEquals() {
     if (middleFieldValue == "") {
         middleFieldValue = "equals";
         middleField.setAttribute("value", "=");
-    } else if (answerFieldValue != "") {
+    } else if (answerFieldValue != "" && !hasPoint(answerFieldValue)) {
         leftFieldValue = answerFieldValue;
-        leftField.setAttribute("value", leftFieldValue);
+        leftField.setAttribute("value", leftFieldValue.toUpperCase());
         middleFieldValue = "equals";
         middleField.setAttribute("value", "=");
         clearField("right");
