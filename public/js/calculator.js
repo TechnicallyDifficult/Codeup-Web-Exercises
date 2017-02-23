@@ -397,7 +397,7 @@ $(document).ready(function () {
     $("#btn-oct").on("click", convertToOct);
     $("#btn-scnd").on("click", clickSecondF);
 
-    $(document).on("keypress", function (e) {
+    $(document).on("keydown", function (e) {
         // console.log(e.key);
         if (numbers) {
             switch (e.key) {
@@ -482,6 +482,23 @@ $(document).ready(function () {
                 break;
             case "_":
                 $("#btn-negative").click();
+                break;
+            case "Escape":
+                $("#btn-clear").click();
+                break;
+            case "Backspace":
+                if (answerFieldValue == "") {
+                    if (middleFieldValue == "") {
+                        leftFieldValue = leftFieldValue.substring(0, leftFieldValue.length - 1);
+                        leftField.val(leftFieldValue);
+        ***REMOVED*** else if (rightFieldValue == "") {
+                        middleFieldValue = "";
+                        middleField.val(middleFieldValue);
+        ***REMOVED*** else {
+                        rightFieldValue = rightFieldValue.substring(0, rightFieldValue.length - 1);
+                        rightField.val(rightFieldValue);
+        ***REMOVED***
+    ***REMOVED***
         }
     });
 });
