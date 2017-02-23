@@ -397,7 +397,7 @@ $(document).ready(function () {
     $("#btn-oct").on("click", convertToOct);
     $("#btn-scnd").on("click", clickSecondF);
 
-    $(document).on("keydown", function (e) {
+    $(document).keydown(function (e) {
         // console.log(e.key);
         if (numbers) {
             switch (e.key) {
