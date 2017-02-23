@@ -1,0 +1,43 @@
+***REMOVED***
+***REMOVED***
+	<head>
+		<title>Konami Code</title>
+	</head>
+	<body>
+		<h1 id="konami-code">Konami Code</h1>
+
+		<script src='https://code.jquery.com/jquery-2.2.4.min.js' integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' crossorigin='anonymous'></script>
+		<script src='./js/morphext.min.js'></script>
+		<script>
+			'use strict';
+
+			var keylog = [],
+				complete = false,
+				lives = 3;
+
+			$(document).keyup(function(event){
+				console.log(event.key);
+				if (!complete) {
+					if (keylog.length < 10) {
+						keylog.push(event.key);
+					} else {
+						keylog.shift();
+						keylog.push(event.key);
+					}
+					if (keylog.join(' ') == 'ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a') {
+						console.log('sequence complete');
+						var intervalId = setInterval(function increaseLives() {
+							if (lives <= 30) {
+								$('#konami-code').html("Lives x " + lives);
+								lives++;
+							} else {
+								clearInterval(intervalId);
+							}
+						}, 250);
+						complete = true;
+					}
+				}
+			});
+		</script>
+	</body>
+***REMOVED***
