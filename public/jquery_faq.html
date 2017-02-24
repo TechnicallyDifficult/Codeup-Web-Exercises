@@ -8,9 +8,6 @@
                 -moz-user-select: none;
                 cursor: pointer;
 ***REMOVED***
-            li {
-                cursor: default;
-***REMOVED***
             .invisible {
                 display: none;
 ***REMOVED***
@@ -75,17 +72,14 @@
             $('document').ready(function () {
     ***REMOVED***
                 $('#showhide').click(function () {
-                    $('dd').toggle();
+                    $('dd').fadeToggle();
                     $('#showhide').html($('#showhide').html() == 'Show' ? 'Hide' : 'Show');
     ***REMOVED***);
                 $('ul').each(function () {
                     $(this).children().first().css('font-weight', 'bold');
     ***REMOVED***);
-                $('li').click(function () {
-                    $(this).parent().hide();
-    ***REMOVED***);
                 $('h3').click(function () {
-                    $(this).parent().children('ul').toggle();
+                    $(this).parent().children('ul').fadeToggle();
     ***REMOVED***);
 ***REMOVED***);
 ***REMOVED***
