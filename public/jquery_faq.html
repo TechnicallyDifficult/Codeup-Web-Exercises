@@ -8,6 +8,9 @@
                 -moz-user-select: none;
                 cursor: pointer;
 ***REMOVED***
+            li {
+                cursor: default;
+***REMOVED***
             .invisible {
                 display: none;
 ***REMOVED***
@@ -77,6 +80,9 @@
     ***REMOVED***);
                 $('ul').each(function () {
                     $(this).children().first().css('font-weight', 'bold');
+    ***REMOVED***);
+                $('li').click(function () {
+                    $(this).parent().fadeOut();
     ***REMOVED***);
                 $('h3').click(function () {
                     $(this).parent().children('ul').fadeToggle();
