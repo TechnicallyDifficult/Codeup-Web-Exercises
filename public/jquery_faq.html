@@ -3,6 +3,14 @@
 ***REMOVED***
         <title>jQuery FAQ</title>
         <style>
+            h3 {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                cursor: pointer;
+***REMOVED***
+            li {
+                cursor: default;
+***REMOVED***
             .invisible {
                 display: none;
 ***REMOVED***
@@ -34,6 +42,33 @@
                 <dt>Are these questions actually frequently asked?</dt>
                 <dd class='invisible'>No.</dd>
             </dl>
+            <section>
+                <h3>Sweet Puttin' Cakes</h3>
+                <ul>
+                    <li>Makes no sense</li>
+                    <li>Doesn't exist in this universe</li>
+                    <li>Features a statue</li>
+                    <li>Eh! Steve!</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Another Park</h3>
+                <ul>
+                    <li>Is a national park</li>
+                    <li>Is a park in addition to the previous park</li>
+                    <li>Is a nondescript national park</li>
+                    <li>Is nondescript, yet somehow important enough</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Banana Mountain</h3>
+                <ul>
+                    <li>Lots of embers</li>
+                    <li>Piles of pancakes</li>
+                    <li>I really don't know any national parks</li>
+                    <li>So you get ridiculous nonsense instead! Yay!</li>
+                </ul>
+            </section>
         </main>
         <script src='https://code.jquery.com/jquery-2.2.4.min.js' integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' crossorigin='anonymous'></script>
         <script>
@@ -42,6 +77,15 @@
                 $('#showhide').click(function () {
                     $('dd').toggleClass('invisible');
                     $('#showhide').html($('#showhide').html() == 'Show' ? 'Hide' : 'Show');
+    ***REMOVED***);
+                $('ul').each(function () {
+                    $(this).children().first().css('font-weight', 'bold');
+    ***REMOVED***);
+                $('li').click(function () {
+                    $(this).parent().addClass('invisible');
+    ***REMOVED***);
+                $('h3').click(function () {
+                    $(this).parent().children('ul').toggleClass('invisible');
     ***REMOVED***);
 ***REMOVED***);
 ***REMOVED***
