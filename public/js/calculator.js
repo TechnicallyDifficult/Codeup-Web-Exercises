@@ -169,7 +169,7 @@ $(document).ready(function () {
     }
 
     function clickPlus() {
-        if (numberSystem == 10 || !hasPoint(answerFieldValue)) {
+        if ((numberSystem == 10 || !hasPoint(answerFieldValue)) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "plus";
             middleField.val("+");
@@ -177,7 +177,7 @@ $(document).ready(function () {
     }
 
     function clickMinus() {
-        if (numberSystem == 10 || !hasPoint(answerFieldValue)) {
+        if ((numberSystem == 10 || !hasPoint(answerFieldValue)) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "minus";
             middleField.val("−");
@@ -185,7 +185,7 @@ $(document).ready(function () {
     }
 
     function clickTimes() {
-        if (numberSystem == 10 || !hasPoint(answerFieldValue)) {
+        if ((numberSystem == 10 || !hasPoint(answerFieldValue)) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "times";
             middleField.val("×");
@@ -193,7 +193,7 @@ $(document).ready(function () {
     }
 
     function clickDivide() {
-        if (numberSystem == 10 || !hasPoint(answerFieldValue)) {
+        if ((numberSystem == 10 || !hasPoint(answerFieldValue)) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "divide";
             middleField.val("÷");
@@ -201,7 +201,7 @@ $(document).ready(function () {
     }
 
     function clickPower() {
-        if (numberSystem == 10 || !hasPoint(answerFieldValue)) {
+        if ((numberSystem == 10 || !hasPoint(answerFieldValue)) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "power";
             middleField.val("^");
@@ -209,7 +209,7 @@ $(document).ready(function () {
     }
 
     function clickSqrt() {
-        if (numberSystem == 10 || !hasPoint(answerFieldValue)) {
+        if ((numberSystem == 10 || !hasPoint(answerFieldValue)) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "sqrt";
             middleField.val("√");
@@ -217,7 +217,7 @@ $(document).ready(function () {
     }
 
     function clickPercent() {
-        if (numberSystem == 10) {
+        if ((numberSystem == 10) && answerFieldValue != '...') {
             clickOperator();
             middleFieldValue = "percent";
             middleField.val("%");
@@ -354,25 +354,27 @@ $(document).ready(function () {
     // }
 
     function clickEquals() {
-        if (leftFieldValue == "") {
-            leftFieldValue = "0";
-            leftField.val(leftFieldValue);
+        if (answerFieldValue != "...") {
+            if (leftFieldValue == "") {
+                leftFieldValue = "0";
+                leftField.val(leftFieldValue);
+***REMOVED***
+            if (middleFieldValue == "") {
+                middleFieldValue = "equals";
+                middleField.val("=");
+***REMOVED*** else if (answerFieldValue != "" && (numberSystem == 10 || !hasPoint(answerFieldValue))) {
+                leftFieldValue = answerFieldValue;
+                leftField.val(leftFieldValue.toUpperCase());
+                middleFieldValue = "equals";
+                middleField.val("=");
+                clearField("right");
+***REMOVED*** else if (rightFieldValue == "" && middleFieldValue != "sqrt") {
+                rightFieldValue = "0";
+                rightField.val(rightFieldValue);
+***REMOVED***
+            answerFieldValue = performOperation(leftFieldValue, rightFieldValue, middleFieldValue);
+            answerField.val(answerFieldValue.toUpperCase());
         }
-        if (middleFieldValue == "") {
-            middleFieldValue = "equals";
-            middleField.val("=");
-        } else if (answerFieldValue != "" && (numberSystem == 10 || !hasPoint(answerFieldValue))) {
-            leftFieldValue = answerFieldValue;
-            leftField.val(leftFieldValue.toUpperCase());
-            middleFieldValue = "equals";
-            middleField.val("=");
-            clearField("right");
-        } else if (rightFieldValue == "" && middleFieldValue != "sqrt") {
-            rightFieldValue = "0";
-            rightField.val(rightFieldValue);
-        }
-        answerFieldValue = performOperation(leftFieldValue, rightFieldValue, middleFieldValue);
-        answerField.val(answerFieldValue.toUpperCase());
     }
 
     for (var i = 0; i < numberButtons.length; i++) {
