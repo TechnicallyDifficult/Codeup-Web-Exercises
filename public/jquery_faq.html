@@ -75,17 +75,17 @@
             $('document').ready(function () {
     ***REMOVED***
                 $('#showhide').click(function () {
-                    $('dd').fadeToggle();
+                    $('dd').slideToggle(150);
                     $('#showhide').html($('#showhide').html() == 'Show' ? 'Hide' : 'Show');
     ***REMOVED***);
                 $('ul').each(function () {
                     $(this).children().first().css('font-weight', 'bold');
     ***REMOVED***);
                 $('li').click(function () {
-                    $(this).parent().fadeOut();
+                    $(this).parent().slideUp(150);
     ***REMOVED***);
                 $('h3').click(function () {
-                    $(this).parent().children('ul').fadeToggle();
+                    $(this).parent().children('ul').slideToggle(150);
     ***REMOVED***);
 ***REMOVED***);
 ***REMOVED***
