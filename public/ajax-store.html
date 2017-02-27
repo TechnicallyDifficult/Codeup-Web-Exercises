@@ -1,0 +1,61 @@
+***REMOVED***
+***REMOVED***
+***REMOVED***
+        <title>Online Store</title>
+        <style>
+            body {
+                font-family: sans-serif;
+***REMOVED***
+            table, thead, tbody {
+                border: 2px solid black;
+                border-collapse: collapse;
+***REMOVED***
+
+            td, th {
+                border: 1px solid black;
+                padding: 4px 8px;
+***REMOVED***
+
+            table {
+                margin: auto;
+***REMOVED***
+            h1 {
+                text-align: center;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+        <main>
+            <h1>My Tool Store</h1>
+
+            <table id='products'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Categories</th>
+                    </tr>
+                </thead>
+                <tbody id='insertProducts'></tbody>
+            </table>
+        </main>
+
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script>
+        $(document).ready(function () {
+***REMOVED***
+            var table = '';
+            const td = '</td><td>'
+
+            $.get('./data/inventory.json').done(function (data) {
+                data.forEach(function (element, index, array) {
+                    $('#insertProducts').html(table += '<tr><td>' + data[index].title + td + data[index].quantity + td + data[index].price + td + data[index].categories.join(', ') + '</td></tr>');
+    ***REMOVED***);
+***REMOVED***);
+        });
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
