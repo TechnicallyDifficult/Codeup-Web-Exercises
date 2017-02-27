@@ -50,7 +50,7 @@
 
             $.get('./data/inventory.json').done(function (data) {
                 data.forEach(function (element, index, array) {
-                    $('#insertProducts').append('<tr><td>' + data[index].title + td + data[index].quantity + td + data[index].price + td + data[index].categories.join(', ') + '</td></tr>');
+                    $('#insertProducts').append('<tr><td>' + element.title + td + element.quantity + td + element.price + td + element.categories.join(', ') + '</td></tr>');
     ***REMOVED***);
 ***REMOVED***);
         });
