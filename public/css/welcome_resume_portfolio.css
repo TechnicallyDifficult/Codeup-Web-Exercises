@@ -17,22 +17,31 @@ body {
     border-radius: 1em;
 }
 
+
 .growing-box {
+/*
     position: relative;
     transition: width 0.2s, height 0.2s, left 0.2s;
     width: 200px;
     height: 100px;
-    margin: 50px;
+*/
+    margin-left: 4.16666667%;
+    margin-right: 4.16666667%;
+/*
     float: left;
     left: 0;
+*/
 }
 
+
+/*
 .growing-box:hover {
     transition: width 0.2s, height 0.2s, left 0.2s;
     width: 400px;
     height: 300px;
     left: -100px;
 }
+*/
 
 .navbar {
     background-color: #294ddb;
