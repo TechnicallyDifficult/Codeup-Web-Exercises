@@ -1,23 +1,23 @@
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
-        <meta charset="UTF-8">
+        <meta charset='UTF-8'>
         <title>DOM: Query and Modify</title>
 ***REMOVED***
 ***REMOVED***
-        <h1 id="main-header">Hello World!</h1>
-        <button id="btn1">Change the header</button>
+        <h1 id='main-header'>Hello World!</h1>
+        <button id='btn1'>Change the header</button>
         <ul>
-            <li data-dbid="1">Item 1</li>
-            <li data-dbid="2">Item 2</li>
-            <li data-dbid="3">Item 3</li>
-            <li data-dbid="4">Item 4</li>
-            <li data-dbid="5">Item 5</li>
+            <li data-dbid='1'>Item 1</li>
+            <li data-dbid='2'>Item 2</li>
+            <li data-dbid='3'>Item 3</li>
+            <li data-dbid='4'>Item 4</li>
+            <li data-dbid='5'>Item 5</li>
         </ul>
-        <button id="btn2">Change the list</button>
-        <h2 id="sub-header">Hello Again.</h2>
-        <button id="btn3">Change the subheader</button>
-        <p class="sub-paragraph">
+        <button id='btn2'>Change the list</button>
+        <h2 id='sub-header'>Hello Again.</h2>
+        <button id='btn3'>Change the subheader</button>
+        <p class='sub-paragraph'>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -26,91 +26,91 @@
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <button id="btn4">Change the paragraph</button>
+        <button id='btn4'>Change the paragraph</button>
 
         <script>
     ***REMOVED***
-                "use strict";
-                var mainHeader = document.getElementById("main-header"),
-                    listItems = document.getElementsByTagName("li"),
-                    subHeader = document.getElementById("sub-header"),
-                    subParagraphs = document.getElementsByClassName("sub-paragraph"),
-                    btn1 = document.getElementById("btn1"),
-                    btn2 = document.getElementById("btn2"),
-                    btn3 = document.getElementById("btn3"),
-                    btn4 = document.getElementById("btn4");
+    ***REMOVED***
+                var mainHeader = document.getElementById('main-header'),
+                    listItems = document.getElementsByTagName('li'),
+                    subHeader = document.getElementById('sub-header'),
+                    subParagraphs = document.getElementsByClassName('sub-paragraph'),
+                    btn1 = document.getElementById('btn1'),
+                    btn2 = document.getElementById('btn2'),
+                    btn3 = document.getElementById('btn3'),
+                    btn4 = document.getElementById('btn4');
 
                 function changeMainHeader(event) {
-                    mainHeader.innerHTML = "JavaScript is Cool";
-                    btn1.innerHTML = "Change the header back";
-                    btn1.removeEventListener("click", changeMainHeader, false);
-                    btn1.addEventListener("click", unchangeMainHeader, false);
+                    mainHeader.innerHTML = 'JavaScript is Cool';
+                    btn1.innerHTML = 'Change the header back';
+                    btn1.removeEventListener('click', changeMainHeader, false);
+                    btn1.addEventListener('click', unchangeMainHeader, false);
     ***REMOVED***
 
                 function changeList(event) {
                     for (var i = 0; i < listItems.length; i++) {
                         if (i % 2 == 1) {
-                            listItems[i].style.color = "grey";
-            ***REMOVED*** else if (listItems[i].getAttribute("data-dbid") == 1) {
-                            listItems[i].style.color = "blue";
+                            listItems[i].style.color = 'grey';
+            ***REMOVED*** else if (listItems[i].getAttribute('data-dbid') == 1) {
+                            listItems[i].style.color = 'blue';
             ***REMOVED***
         ***REMOVED***
-                    btn2.innerHTML = "Change the list back";
-                    btn2.removeEventListener("click", changeList, false);
-                    btn2.addEventListener("click", unchangeList, false);
+                    btn2.innerHTML = 'Change the list back';
+                    btn2.removeEventListener('click', changeList, false);
+                    btn2.addEventListener('click', unchangeList, false);
     ***REMOVED***
 
                 function changeSubHeader(event) {
-                    subHeader.style.color = "blue";
-                    btn3.innerHTML = "Change the subheader back";
-                    btn3.removeEventListener("click", changeSubHeader, false);
-                    btn3.addEventListener("click", unchangeSubHeader, false);
+                    subHeader.style.color = 'blue';
+                    btn3.innerHTML = 'Change the subheader back';
+                    btn3.removeEventListener('click', changeSubHeader, false);
+                    btn3.addEventListener('click', unchangeSubHeader, false);
     ***REMOVED***
 
                 function changeSubParagraph(event) {
-                    subParagraphs[0].innerHTML = "Mission Accomplished!";
-                    btn4.innerHTML = "Change the paragraph back";
-                    btn4.removeEventListener("click", changeSubParagraph, false);
-                    btn4.addEventListener("click", unchangeSubParagraph, false);
+                    subParagraphs[0].innerHTML = 'Mission Accomplished!';
+                    btn4.innerHTML = 'Change the paragraph back';
+                    btn4.removeEventListener('click', changeSubParagraph, false);
+                    btn4.addEventListener('click', unchangeSubParagraph, false);
     ***REMOVED***
 
                 function unchangeMainHeader(event) {
-                    mainHeader.innerHTML = "Hello World!";
-                    btn1.innerHTML = "Change the header";
-                    btn1.removeEventListener("click", unchangeMainHeader, false);
-                    btn1.addEventListener("click", changeMainHeader, false);
+                    mainHeader.innerHTML = 'Hello World!';
+                    btn1.innerHTML = 'Change the header';
+                    btn1.removeEventListener('click', unchangeMainHeader, false);
+                    btn1.addEventListener('click', changeMainHeader, false);
     ***REMOVED***
 
                 function unchangeList(event) {
                     for (var i = 0; i < listItems.length; i++) {
-                        listItems[i].style.color = "black";
+                        listItems[i].style.color = 'black';
         ***REMOVED***
-                    btn2.innerHTML = "Change the list";
-                    btn2.removeEventListener("click", unchangeList, false);
-                    btn2.addEventListener("click", changeList, false);
+                    btn2.innerHTML = 'Change the list';
+                    btn2.removeEventListener('click', unchangeList, false);
+                    btn2.addEventListener('click', changeList, false);
     ***REMOVED***
 
                 function unchangeSubHeader(event) {
-                    subHeader.style.color = "black"
-                    btn3.innerHTML = "Change the subheader";
-                    btn3.removeEventListener("click", unchangeSubHeader, false);
-                    btn3.addEventListener("click", changeSubHeader, false);
+                    subHeader.style.color = 'black'
+                    btn3.innerHTML = 'Change the subheader';
+                    btn3.removeEventListener('click', unchangeSubHeader, false);
+                    btn3.addEventListener('click', changeSubHeader, false);
     ***REMOVED***
 
                 function unchangeSubParagraph(event) {
-                    subParagraphs[0].innerHTML = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-                    btn4.innerHTML = "Change the paragraph";
-                    btn4.removeEventListener("click", unchangeSubParagraph, false);
-                    btn4.addEventListener("click", changeSubParagraph, false);
+                    subParagraphs[0].innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+                    btn4.innerHTML = 'Change the paragraph';
+                    btn4.removeEventListener('click', unchangeSubParagraph, false);
+                    btn4.addEventListener('click', changeSubParagraph, false);
     ***REMOVED***
 
-                btn1.addEventListener("click", changeMainHeader, false);
+                btn1.addEventListener('click', changeMainHeader, false);
 
-                btn2.addEventListener("click", changeList, false);
+                btn2.addEventListener('click', changeList, false);
 
-                btn3.addEventListener("click", changeSubHeader, false);
+                btn3.addEventListener('click', changeSubHeader, false);
 
-                document.getElementById("btn4").addEventListener("click", changeSubParagraph, false);
+                document.getElementById('btn4').addEventListener('click', changeSubParagraph, false);
 ***REMOVED***)();
 ***REMOVED***
 ***REMOVED***
