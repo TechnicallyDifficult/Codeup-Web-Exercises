@@ -1,0 +1,21 @@
+.table-bordered {
+    border: 2px solid black;
+    border-collapse: collapse;
+    border-radius: 200px;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>td {
+    border-color: black;
+}
+
+table {
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#refresh {
+    margin-bottom: 10px;
+}

@@ -2,59 +2,33 @@
 ***REMOVED***
 ***REMOVED***
         <title>Online Store</title>
-        <style>
-            body {
-                font-family: sans-serif;
-***REMOVED***
-            table, thead, tbody {
-                border: 2px solid black;
-                border-collapse: collapse;
-***REMOVED***
-
-            td, th {
-                border: 1px solid black;
-                padding: 4px 8px;
-***REMOVED***
-
-            table {
-                margin: auto;
-***REMOVED***
-            h1 {
-                text-align: center;
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link href='./css/bootstrap.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="./css/ajax_store.css">
 ***REMOVED***
 ***REMOVED***
-***REMOVED***
-***REMOVED***
-        <main>
-            <h1>My Tool Store</h1>
-
-            <table id='products'>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Categories</th>
-                    </tr>
-                </thead>
-                <tbody id='insertProducts'></tbody>
-            </table>
+        <main class='row'>
+            <div class='container col-xs-4 col-xs-offset-4'>
+                <h1>My Tool Store</h1>
+                <button id='refresh' class='btn btn-info'>Refresh</button>
+                <table id='products' class='table table-bordered'>
+                    <thead>
+                        <tr>
+                            <th class='mytable'>Title</th>
+                            <th class='mytable'>Quantity</th>
+                            <th class='mytable'>Price</th>
+                            <th class='mytable'>Categories</th>
+                        </tr>
+                    </thead>
+                    <tbody id='insertProducts'></tbody>
+                </table>
+            </div>
         </main>
 
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-        <script>
-            $(document).ready(function () {
-    ***REMOVED***
-                const td = '</td><td>'
-
-                $.get('./data/inventory.json').done(function (data) {
-                    data.forEach(function (element, index, array) {
-                        $('#insertProducts').append('<tr><td>' + element.title + td + element.quantity + td + element.price + td + element.categories.join(', ') + '</td></tr>');
-        ***REMOVED***);
-    ***REMOVED***);
-***REMOVED***);
-***REMOVED***
-
+        <script src='./js/ajax_store.js'></script>
 ***REMOVED***
 ***REMOVED***
