@@ -9,7 +9,17 @@ function getWeather(Lat, Lon) {
 		cnt: 3,
 		units: 'imperial'
 	}).fail(function(data, status) {
-		alert('Failed to load:' + status);
+		console.log(status);
+		$.alert({
+			title: 'Uh oh!',
+			content: 'Failed to load! See console for details.',
+			type: 'red',
+			backgroundDismiss: true,
+			animationBounce: 1.5,
+			buttons: {
+				close: function () {}
+			}
+		});
 	}).done(function(data) {
 		console.log(data);
 		renderForecast(data.city.name, data.list);
@@ -26,5 +36,15 @@ function renderForecast(cityName, list) {
 getWeather(29.42412, -98.493629);
 
 $('#get-weather').click(function () {
-	getWeather($('#lat-input').val(), $('#lon-input').val());
+	var latitude = $('#lat-input').val(),
+		longitude = $('#lon-input').val();
+	if (isNaN(parseFloat(latitude)) || isNaN(parseFloat(longitude))) {
+		$.alert({
+			title: 'Invalid Location',
+			content: 'Please input valid latitude and longitude values.',
+			type: 'red'
+		});
+	} else {
+		getWeather(latitude, longitude);
+	}
 });
