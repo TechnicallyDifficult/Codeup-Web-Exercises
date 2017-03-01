@@ -17,8 +17,12 @@ p {
 	margin: 0 0 5px;
 }
 
-input:focus {
+input:focus, .btn:focus, .btn:active, .btn:active:focus {
 	outline: none;
+}
+
+.address-container {
+	text-align: left;
 }
 
 .day-forecast {
@@ -42,7 +46,7 @@ input:focus {
 	margin: 0;
 }
 
-.form-control {
+.latlng {
 	width: initial;
 }
 

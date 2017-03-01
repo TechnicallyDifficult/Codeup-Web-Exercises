@@ -1,4 +1,4 @@
-$(document).ready(function () {
+// $(document).ready(function () {
 	const APPID = '7f8e3aa0aad113510e0c1eaafd1c17b8';
 	var url = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 	var latitude = parseFloat($('#lat-input').val());
@@ -12,14 +12,12 @@ $(document).ready(function () {
 	};
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	var marker = new google.maps.Marker({
-		position: {
-			lat: latitude,
-			lng: longitude
-		},
+		position: map.center,
 		map: map,
 		animation: google.maps.Animation.DROP,
 		draggable: true
 	});
+	var geocoder = new google.maps.Geocoder();
 
 	function getWeather(Lat, Lon) {
 		$.get(url, {
@@ -32,7 +30,7 @@ $(document).ready(function () {
 			console.log(status);
 			$.alert({
 				title: 'Uh oh!',
-				content: 'Failed to load! See console for details.',
+				content: 'Weather failed to load! See console for details.',
 				type: 'red',
 				backgroundDismiss: true,
 				animationBounce: 1.5,
@@ -53,21 +51,71 @@ $(document).ready(function () {
 		});
 	}
 
+	function convertAddress() {
+		var address = $('#address-input').val();
+		geocoder.geocode({ 'address': address }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				latitude = results[0].geometry.location.lat();
+				longitude = results[0].geometry.location.lng();
+				$('#lat-input').val(latitude);
+				$('#lon-input').val(longitude);
+
+			} else if (status != 'ZERO_RESULTS') {
+				console.log(status);
+				$.alert({
+				title: 'Uh oh!',
+				content: 'Geocoding failed! See console for details.',
+				type: 'red',
+				backgroundDismiss: true,
+				animationBounce: 1.5,
+				buttons: {
+					close: function () {}
+				}
+			});
+			}
+		});
+	}
+
 	getWeather(29.42412, -98.493629);
 
 	$('#get-weather').click(function () {
-		latitude = parseFloat($('#lat-input').val()),
-		longitude = parseFloat($('#lon-input').val());
+		if ($('#address-input').val() != '') {
+			convertAddress();
+		} else {
+			latitude = parseFloat($('#lat-input').val());
+			longitude = parseFloat($('#lon-input').val());
+		}
 		if (isNaN(latitude) || isNaN(longitude)) {
 			$.alert({
 				title: 'Invalid Location',
 				content: 'Please input valid latitude and longitude values.',
 				type: 'red',
-				backgroundDismiss: true
+				backgroundDismiss: true,
+				animationBounce: 1.5
 			});
 		} else {
 			getWeather(latitude, longitude);
+			marker.setPosition(new google.maps.LatLng(latitude, longitude));
+			map.panTo(marker.getPosition());
 		}
+	});
+
+	$('#address-input').change(convertAddress);
+
+	$('#lat-input').change(function(event) {
+		latitude = parseFloat($('#lat-input').val());
+	});
+
+	$('#lat-input').keypress(function(event) {
+		$('#address-input').val('');
+	});
+
+	$('#lon-input').keypress(function(event) {
+		$('#address-input').val('');
+	});
+
+	$('#lon-input').focusout(function(event) {
+		longitude = parseFloat($('#lon-input').val());
 	});
 
 	google.maps.event.addListener(marker, 'dragend', function(evt){
@@ -77,4 +125,4 @@ $(document).ready(function () {
 		$('#lon-input').val(longitude);
 		getWeather(latitude, longitude);
 	});
-});
+// });
