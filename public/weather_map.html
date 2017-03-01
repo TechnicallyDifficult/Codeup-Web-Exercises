@@ -6,94 +6,30 @@
 		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link href='./css/bootstrap.min.css' rel='stylesheet'>
-		<style>
-			main {
-				text-align: center;
-			}
-
-			h2 {
-				padding-left: 10px;
-				margin-top: 0;
-				margin-bottom: 15px;
-			}
-
-			h4 {
-				font-size: 20px;
-				margin-bottom: 0;
-			}
-
-			p {
-			    margin: 0 0 5px;
-			}
-			
-			.day-forecast {
-				width: 225px;
-				background-color: white;
-				border: 1px solid #aaa;
-				display: inline-block;
-				font-size: 12px;
-				margin: 10px;
-			}
-
-			.main-container {
-				display: inline-block;
-				background-color: #abdcfd;
-				padding: 20px;
-			}
-
-			.icon {
-				margin: 0;
-			}
-
-			#forecast-container {
-				display: inline-block;
-				margin: 5px;
-			}
-		</style>
+		<link rel='stylesheet' href='./css/weather_map.css'>
 	</head>
 	<body>
 		<main>
 			<div class='main-container'>
 				<h2>Weather Application</h2>
+				<div class='form-group'>
+					<div class='form-container'>
+						<label for='lat-input'>Latitude:</label>
+						<input type='text' class='form-control' id='lat-input'>
+					</div>
+					<div class=form-container>
+						<label for='lon-input'>Longitude:</label>
+						<input type='text' class='form-control' id='lon-input'>
+					</div>
+				</div>
+				<div>
+					<button class='btn btn-success' id='get-weather'>Get Weather</button>
+				</div>
 				<div id='forecast-container'></div>
 			</div>
 		</main>
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 		<script src='./js/bootstrap.min.js'></script>
-		<script>
-			const APPID = '7f8e3aa0aad113510e0c1eaafd1c17b8';
-			var url = 'http://api.openweathermap.org/data/2.5/forecast/daily';
-
-			function getWeather(initial, Lat, Lon) {
-				var defaultPosition = {
-					APPID: APPID,
-					q: 'San Antonio',
-					cnt: 3,
-					units: 'imperial'
-				};
-				var position = {
-					APPID: APPID,
-					lat: Lat,
-					lon: Lon,
-					cnt: 3,
-					units: 'imperial'
-				};
-				$.get(url, !initial ? position : defaultPosition).fail(function(data, status) {
-					alert('Failed to load:' + status);
-				}).done(function(data) {
-					console.log(data);
-					renderForecast(data.city.name, data.list);
-				});
-			}
-
-			function renderForecast(cityName, list) {
-				$('#forecast-container').html('<h4>' + (cityName ? cityName : 'No city selected') + '</h4>');
-				list.forEach(function (element, index, array) {
-					$('#forecast-container').append('<div class="day-forecast"><h4>' + Math.round(element.temp.max) + '°F / ' + Math.round(element.temp.min) + '°F</h4>' + '<p class="icon"><img src="http://openweathermap.org/img/w/' + element.weather[0].icon + '.png"></p>' + '<p><strong>' + element.weather[0].main + ':</strong> ' + element.weather[0].description + '</p><p><strong>Humidity:</strong> ' + element.humidity + '%</p><p><strong>Wind:</strong> <span>' + element.speed + 'mph</p><p><strong>Pressure:</strong> ' + element.pressure +'hPa</p></div>');
-				});
-			}
-
-			getWeather(true);
-		</script>
+		<script src='./js/weather_map.js'></script>
 	</body>
 ***REMOVED***
