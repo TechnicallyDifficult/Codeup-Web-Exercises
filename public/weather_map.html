@@ -7,6 +7,10 @@
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link href='./css/bootstrap.min.css' rel='stylesheet'>
 		<style>
+			main {
+				text-align: center;
+			}
+
 			h2 {
 				padding-left: 10px;
 				margin-top: 0;
@@ -23,18 +27,18 @@
 			}
 			
 			.day-forecast {
-				text-align: center;
 				width: 225px;
 				background-color: white;
 				border: 1px solid #aaa;
 				display: inline-block;
 				font-size: 12px;
-				margin-top: 10px;
+				margin: 10px;
 			}
 
 			.main-container {
+				display: inline-block;
 				background-color: #c0e9ef;
-				padding: 5px;
+				padding: 20px;
 			}
 
 			.icon {
@@ -51,9 +55,7 @@
 		<main>
 			<div class='main-container'>
 				<h2>Weather Application</h2>
-				<div id='forecast-container'>
-					<h4 id='city'>City</h4>
-				</div>
+				<div id='forecast-container'></div>
 			</div>
 		</main>
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -62,13 +64,21 @@
 			const APPID = '7f8e3aa0aad113510e0c1eaafd1c17b8';
 			var url = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 
-			function getWeather() {
-				$.get(url, {
+			function getWeather(initial, Lat, Lon) {
+				var defaultPosition = {
 					APPID: APPID,
 					q: 'San Antonio',
 					cnt: 3,
 					units: 'imperial'
-				}).fail(function(data, status) {
+				};
+				var position = {
+					APPID: APPID,
+					lat: Lat,
+					lon: Lon,
+					cnt: 3,
+					units: 'imperial'
+				};
+				$.get(url, !initial ? position : defaultPosition).fail(function(data, status) {
 					alert('Failed to load:' + status);
 				}).done(function(data) {
 					console.log(data);
@@ -77,14 +87,13 @@
 			}
 
 			function renderForecast(cityName, list) {
-				$('#city').text(cityName);
-				$('#forecast-container').html('');
+				$('#forecast-container').html('<h4>' + (cityName ? cityName : 'No city selected') + '</h4>');
 				list.forEach(function (element, index, array) {
 					$('#forecast-container').append('<div class="day-forecast"><h4>' + Math.round(element.temp.max) + '°F / ' + Math.round(element.temp.min) + '°F</h4>' + '<p class="icon"><img src="http://openweathermap.org/img/w/' + element.weather[0].icon + '.png"></p>' + '<p><strong>' + element.weather[0].main + ':</strong> ' + element.weather[0].description + '</p><p><strong>Humidity:</strong> ' + element.humidity + '%</p><p><strong>Wind:</strong> <span>' + element.speed + 'mph</p><p><strong>Pressure:</strong> ' + element.pressure +'hPa</p></div>');
 				});
 			}
 
-			getWeather();
+			getWeather(true);
 		</script>
 	</body>
 ***REMOVED***
