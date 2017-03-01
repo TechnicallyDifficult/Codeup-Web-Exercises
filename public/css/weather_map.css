@@ -28,12 +28,14 @@ input:focus {
 	display: inline-block;
 	font-size: 12px;
 	margin: 10px;
+	border-radius: 5px;
 }
 
 .main-container {
 	display: inline-block;
 	background-color: #abdcfd;
 	padding: 20px;
+	border-radius: 5px;
 }
 
 .icon {
