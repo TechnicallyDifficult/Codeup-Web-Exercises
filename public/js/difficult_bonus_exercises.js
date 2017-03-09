@@ -29,9 +29,9 @@ function lengthCheck(input) {
         for (var i = (input.length - 1); i >= 0; i--) {
             if (!isNaN(parseInt(input[i]))) {
                 numberArray.unshift(input[i]);
-***REMOVED*** else {
+            } else {
                 break;
-***REMOVED***
+            }
         }
 
         numberStr = numberArray.join("");

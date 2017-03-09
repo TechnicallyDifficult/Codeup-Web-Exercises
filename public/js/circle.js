@@ -12,9 +12,9 @@
             var result;
             if (doRounding) {
                 result = Math.round(this.getArea());
-***REMOVED*** else {
+            } else {
                 result = this.getArea();
-***REMOVED***
+            }
 
             console.log("Area of a circle with radius: " + this.radius + ", is: " + result);
         }

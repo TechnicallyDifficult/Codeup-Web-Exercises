@@ -61,7 +61,7 @@ FUNCTIONS
 				weight: 20,
 				depth: 1,
 				drag: true
-***REMOVED***
+            }
 			     
             var options =  $.extend(settings, options);
 			

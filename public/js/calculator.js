@@ -49,18 +49,18 @@ $(document).ready(function () {
         if (parseInt(this.innerText, numberSystem) < numberSystem) {
             if (answerFieldValue != "") {
                 clearField();
-***REMOVED***
+            }
             // which side are we working with?
             if (middleFieldValue == "") {
                 leftFieldValue += this.innerText;
                 leftField.val(leftFieldValue.toUpperCase());
                 leftFieldValue = leftFieldValue.toLowerCase();
             // don't allow input into the right side if the square root button was clicked
-***REMOVED*** else if (middleFieldValue != "sqrt") {
+            } else if (middleFieldValue != "sqrt") {
                 rightFieldValue += this.innerText;
                 rightField.val(rightFieldValue.toUpperCase());
                 rightFieldValue = rightFieldValue.toLowerCase();
-***REMOVED***
+            }
         }
     }
 
@@ -102,18 +102,18 @@ $(document).ready(function () {
             if (leftFieldValue.substring(0, 1) != "-") {
                 leftFieldValue = "-" + leftFieldValue;
                 leftField.val(leftFieldValue);
-***REMOVED*** else {
+            } else {
                 leftFieldValue = leftFieldValue.substring(1);
                 leftField.val(leftFieldValue);
-***REMOVED***
+            }
         } else {
             if (rightFieldValue.substring(0, 1) != "-") {
                 rightFieldValue = "-" + rightFieldValue;
                 rightField.val(rightFieldValue);
-***REMOVED*** else {
+            } else {
                 rightFieldValue = rightFieldValue.substring(1);
                 rightField.val(rightFieldValue);
-***REMOVED***
+            }
         }
     }
 
@@ -123,8 +123,8 @@ $(document).ready(function () {
             array.forEach(function (element, index, array) {
                 if (element == ".") {
                     point = true;
-    ***REMOVED***
-***REMOVED***);
+                }
+            });
             return point;
     }
 
@@ -134,24 +134,24 @@ $(document).ready(function () {
             if (answerFieldValue != "") {
                 clearField();
                 leftFieldValue += "0";
-***REMOVED***
+            }
             if (middleFieldValue == "") {
                 if (leftFieldValue == "") {
                     leftFieldValue += "0";
-    ***REMOVED***
+                }
                 if (!hasPoint(leftFieldValue)) {
                     leftFieldValue += ".";
                     leftField.val(leftFieldValue);
-    ***REMOVED***
-***REMOVED*** else if (middleFieldValue != "sqrt") {
+                }
+            } else if (middleFieldValue != "sqrt") {
                 if (rightFieldValue == "") {
                     rightFieldValue += "0";
-    ***REMOVED***
+                }
                 if (!hasPoint(rightFieldValue)) {
                     rightFieldValue += ".";
                     rightField.val(rightFieldValue);
-    ***REMOVED***
-***REMOVED***
+                }
+            }
         }
     }
 
@@ -318,13 +318,13 @@ $(document).ready(function () {
                             'target': 'input, button',
                             'ignoreClass': 'ignoreMe',
                             'drag': true
-            ***REMOVED***);
+                        });
                         gravity = true
-        ***REMOVED***
+                    }
                     return "...";
-    ***REMOVED*** else {
+                } else {
                     return (parseFloat(a, numberSystem) / parseFloat(b, numberSystem)).toString(numberSystem);
-    ***REMOVED***
+                }
             case "power":
                 return Math.pow(parseFloat(a, numberSystem), parseFloat(b, numberSystem)).toString(numberSystem);
             case "sqrt":
@@ -348,7 +348,7 @@ $(document).ready(function () {
     //         default:
     //             for (var i = 1; i < b; i++) {
     //                 c *= a;
-    // ***REMOVED***
+    //             }
     //             return c;
     //     }
     // }
@@ -358,20 +358,20 @@ $(document).ready(function () {
             if (leftFieldValue == "") {
                 leftFieldValue = "0";
                 leftField.val(leftFieldValue);
-***REMOVED***
+            }
             if (middleFieldValue == "") {
                 middleFieldValue = "equals";
                 middleField.val("=");
-***REMOVED*** else if (answerFieldValue != "" && (numberSystem == 10 || !hasPoint(answerFieldValue))) {
+            } else if (answerFieldValue != "" && (numberSystem == 10 || !hasPoint(answerFieldValue))) {
                 leftFieldValue = answerFieldValue;
                 leftField.val(leftFieldValue.toUpperCase());
                 middleFieldValue = "equals";
                 middleField.val("=");
                 clearField("right");
-***REMOVED*** else if (rightFieldValue == "" && middleFieldValue != "sqrt") {
+            } else if (rightFieldValue == "" && middleFieldValue != "sqrt") {
                 rightFieldValue = "0";
                 rightField.val(rightFieldValue);
-***REMOVED***
+            }
             answerFieldValue = performOperation(leftFieldValue, rightFieldValue, middleFieldValue);
             answerField.val(answerFieldValue.toUpperCase());
         }
@@ -430,7 +430,7 @@ $(document).ready(function () {
                 case "9":
                     numberButtons[8].click();
                     break;
-***REMOVED***
+            }
         }
         if (!numbers) {
             switch (e.key) {
@@ -452,7 +452,7 @@ $(document).ready(function () {
                 case "f":
                     numberButtons[5].click();
                     break;
-***REMOVED***
+            }
         }
         switch (e.key) {
             case "0":
@@ -493,14 +493,14 @@ $(document).ready(function () {
                     if (middleFieldValue == "") {
                         leftFieldValue = leftFieldValue.substring(0, leftFieldValue.length - 1);
                         leftField.val(leftFieldValue);
-        ***REMOVED*** else if (rightFieldValue == "") {
+                    } else if (rightFieldValue == "") {
                         middleFieldValue = "";
                         middleField.val(middleFieldValue);
-        ***REMOVED*** else {
+                    } else {
                         rightFieldValue = rightFieldValue.substring(0, rightFieldValue.length - 1);
                         rightField.val(rightFieldValue);
-        ***REMOVED***
-    ***REMOVED***
+                    }
+                }
         }
     });
 });

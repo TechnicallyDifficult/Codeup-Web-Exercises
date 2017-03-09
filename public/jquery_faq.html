@@ -1,22 +1,22 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<!DOCTYPE html>
+<html>
+    <head>
         <title>jQuery FAQ</title>
         <style>
             h3 {
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 cursor: pointer;
-***REMOVED***
+            }
             li {
                 cursor: default;
-***REMOVED***
+            }
             .invisible {
                 display: none;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+            }
+        </style>
+    </head>
+    <body>
         <main>
             <h1>FAQs About National Parks</h1>
             <a href='#' id='showhide'>Show</a>
@@ -73,21 +73,21 @@
         <script src='https://code.jquery.com/jquery-2.2.4.min.js' integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' crossorigin='anonymous'></script>
         <script>
             $('document').ready(function () {
-    ***REMOVED***
+                'use strict';
                 $('#showhide').click(function () {
                     $('dd').slideToggle(150);
                     $('#showhide').html($('#showhide').html() == 'Show' ? 'Hide' : 'Show');
-    ***REMOVED***);
+                });
                 $('ul').each(function () {
                     $(this).children().first().css('font-weight', 'bold');
-    ***REMOVED***);
+                });
                 $('li').click(function () {
                     $(this).parent().slideUp(150);
-    ***REMOVED***);
+                });
                 $('h3').click(function () {
                     $(this).parent().children('ul').slideToggle(150);
-    ***REMOVED***);
-***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,16 +1,16 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<!DOCTYPE html>
+<html>
+    <head>
         <title>Animate</title>
         <style>
             html, body {
                 margin: 0px;
                 padding: 0;
-***REMOVED***
+            }
 
             #btn-animate {
                 margin: 15px;
-***REMOVED***
+            }
 
             #animate-box {
                 background-color: #000033;
@@ -18,10 +18,10 @@
                 margin: 15px;
                 position: relative;
                 width: 250px;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+            }
+        </style>
+    </head>
+    <body>
         <p>
             <button id='btn-move'>Move It</button>
             <button id='btn-scale'>Scale It</button>
@@ -35,7 +35,7 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
         <script>
         $(document).ready(function() {
-***REMOVED***
+            'use strict';
             var moved = false,
                 scaled = false,
                 hidden = false;
@@ -44,40 +44,40 @@
                 if (!moved) {
                     $('#animate-box').animate({
                         'right': '100px'
-        ***REMOVED***, 250);
+                    }, 250);
                     moved = true;
-    ***REMOVED*** else {
+                } else {
                     $('#animate-box').animate({
                         'right': '0px'
-        ***REMOVED***, 250);
+                    }, 250);
                     moved = false;
-    ***REMOVED***
-***REMOVED***
+                }
+            }
             function scaleIt() {
                 if (!scaled) {
                     $('#animate-box').animate({
                         'width': '375px'
-        ***REMOVED***, 250);
+                    }, 250);
                     scaled = true;
-    ***REMOVED*** else {
+                } else {
                     $('#animate-box').animate({
                         'width': '250px'
-        ***REMOVED***, 250);
+                    }, 250);
                     scaled = false;
-    ***REMOVED***
-***REMOVED***
+                }
+            }
             function hideIt() {
                 $('#animate-box').animate({
                     'opacity': 0
-    ***REMOVED***, 250);
+                }, 250);
                 hidden = true;
-***REMOVED***
+            }
             function showIt() {
                 $('#animate-box').animate({
                     'opacity': 1
-    ***REMOVED***, 250);
+                }, 250);
                 hidden = false;
-***REMOVED***
+            }
 
             $('#btn-move').click(moveIt);
             $('#btn-scale').click(scaleIt);
@@ -86,25 +86,25 @@
             $('#btn-all').click(function () {
                 if (hidden) {
                     showIt();
-    ***REMOVED***
+                }
                 if (moved) {
                     moveIt();
-    ***REMOVED***
+                }
                 if (scaled) {
                     scaleIt();
-    ***REMOVED***
+                }
                 $('#animate-box').animate({
                     'right': '100px',
                     'width': '375px'
-    ***REMOVED***, 250).animate({
+                }, 250).animate({
                     'opacity': 0
-    ***REMOVED***, 250).animate({
+                }, 250).animate({
                     'right': '0px',
                     'width': '250px',
                     'opacity': 1
-    ***REMOVED***, 250);
-***REMOVED***)
+                }, 250);
+            })
         });
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        </script>
+    </body>
+</html>

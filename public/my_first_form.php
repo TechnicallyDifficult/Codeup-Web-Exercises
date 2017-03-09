@@ -2,12 +2,12 @@
     var_dump($_GET);
     var_dump($_POST);
 ?>
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<!DOCTYPE html>
+<html>
+    <head>
         <title>My First HTML Form</title>
-***REMOVED***
-***REMOVED***
+    </head>
+    <body>
         <header>
             <h1>Form Practice</h1>
         </header>
@@ -101,5 +101,5 @@
                 </p>
             </form>
         </main>
-***REMOVED***
-***REMOVED***
+    </body>
+</html>

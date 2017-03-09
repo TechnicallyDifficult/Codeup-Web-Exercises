@@ -1,18 +1,18 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<!DOCTYPE html>
+<html>
+    <head>
         <title>Konami Code</title>
         <style>
             @font-face {
                 src: url('./fonts/prstartk.ttf');
-***REMOVED***
+            }
             body {
                 font-family: sans-serif;
-***REMOVED***
+            }
             #konami-code {
                 position: relative;
                 top: -54px;
-***REMOVED***
+            }
             #shadow {
                 color: white;
                 position: relative;
@@ -20,16 +20,16 @@
                 left: 3px;
                 -webkit-user-select: none;
                 -moz-user-select: none;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+            }
+        </style>
+    </head>
+    <body>
         <h1 id='shadow'>Lives x 3</h1>
         <h1 id='konami-code'>Konami Code...</h1>
 
         <script src='https://code.jquery.com/jquery-2.2.4.min.js' integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' crossorigin='anonymous'></script>
         <script>
-***REMOVED***
+            'use strict';
 
             var keylog = [],
                 complete = false,
@@ -43,10 +43,10 @@
                 if (!complete) {
                     if (keylog.length < 10) {
                         keylog.push(event.key);
-        ***REMOVED*** else {
+                    } else {
                         keylog.shift();
                         keylog.push(event.key);
-        ***REMOVED***
+                    }
                     if (keylog.join(' ') == 'ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a') {
                         console.log('sequence complete');
                         $('#konami-code, #shadow').html('Lives x ' + lives);
@@ -54,7 +54,7 @@
                             'font-family': 'Press Start K',
                             'background-color': '#6d8ffc',
                             'color': 'white'
-            ***REMOVED***);
+                        });
                         $('#shadow').css('color', 'black');
                         bonus.play();
                         setTimeout(function () {
@@ -64,18 +64,18 @@
                                     $('#konami-code, #shadow').html('Lives x ' + lives);
                                     if (lives <= 29) {
                                         life.play();
-                        ***REMOVED*** else {
+                                    } else {
                                         win.play();
-                        ***REMOVED***
-                    ***REMOVED*** else {
+                                    }
+                                } else {
                                     clearInterval(intervalId);
-                    ***REMOVED***
-                ***REMOVED***, 900);
+                                }
+                            }, 900);
                         complete = true;
-            ***REMOVED***, 1000);
-        ***REMOVED***
-    ***REMOVED***
-***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+                        }, 1000);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
