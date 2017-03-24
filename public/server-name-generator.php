@@ -1,8 +1,15 @@
 <?php
 
-$adjs = ['blue', 'small', 'good', 'inconspicuous', 'fun', 'stupid', 'windy', 'simple', 'unpropitious', 'heavy'];
+function pageController()
+{
+	$data = [];
 
-$nouns = ['potato', 'block', 'tree', 'explosion', 'fish', 'cheese', 'noun', 'onomatopoeia', 'pickle', 'dragon'];
+	$data['adjs'] = ['blue', 'small', 'good', 'inconspicuous', 'fun', 'stupid', 'windy', 'simple', 'unpropitious', 'heavy'];
+
+	$data['nouns'] = ['potato', 'block', 'tree', 'explosion', 'fish', 'cheese', 'noun', 'onomatopoeia', 'pickle', 'dragon'];
+
+	return $data;
+}
 
 function getRandomWord($array)
 {
@@ -14,6 +21,8 @@ function generateName($adjs, $nouns)
 {
 	return getRandomWord($adjs) .  '-' . getRandomWord($nouns);
 }
+
+extract(pageController());
 
 ?>
 

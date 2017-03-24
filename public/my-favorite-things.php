@@ -1,6 +1,13 @@
 <?php 
 
-$favoriteThings = ['video games', 'friends', 'imagination', 'art', 'music'];
+function pageController()
+{
+	$data = [];
+	$data['favoriteThings'] = ['video games', 'friends', 'imagination', 'art', 'music'];
+	return $data;
+}
+
+extract(pageController());
 
 ?>
 
@@ -23,7 +30,7 @@ $favoriteThings = ['video games', 'friends', 'imagination', 'art', 'music'];
 						<?= $thing; ?>
 					</td>
 				</tr>
-			<?php endforeach ?>
+			<?php endforeach; ?>
 		</table>
 	</body>
 </html>
