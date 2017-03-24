@@ -20,6 +20,11 @@ function generateName()
 <html>
 	<head>
 		<title>Server Name Generator</title>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>

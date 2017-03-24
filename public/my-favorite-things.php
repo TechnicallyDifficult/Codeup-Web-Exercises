@@ -1,6 +1,6 @@
 <?php 
 
-$favoriteThings = ['video games', 'friends', 'imagination', 'art', 'music']
+$favoriteThings = ['video games', 'friends', 'imagination', 'art', 'music'];
 
 ?>
 
@@ -8,6 +8,12 @@ $favoriteThings = ['video games', 'friends', 'imagination', 'art', 'music']
 <html>
 	<head>
 		<title>My Favorite Things</title>
+		<style>
+			table {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+		</style>
 	</head>
 	<body>
 		<table>
