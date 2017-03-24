@@ -13,7 +13,7 @@ function pageController()
 
 function getRandomWord($array)
 {
-	$index = mt_rand(0, 9);
+	$index = mt_rand(0, sizeof($array) - 1);
 	return $array[$index];
 }
 
