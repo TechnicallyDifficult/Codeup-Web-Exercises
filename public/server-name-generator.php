@@ -4,9 +4,9 @@ function pageController()
 {
 	$data = [];
 
-	$data['adjs'] = ['blue', 'small', 'good', 'inconspicuous', 'fun', 'stupid', 'windy', 'simple', 'unpropitious', 'heavy'];
+	$data['adjs'] = ['blue', 'small', 'good', 'inconspicuous', 'fun', 'stupid', 'windy', 'simple', 'unpropitious', 'heavy', 'foregone', 'tentative', 'cosmic', 'infinite', 'misunderstood', 'practical', 'verbal'];
 
-	$data['nouns'] = ['potato', 'block', 'tree', 'explosion', 'fish', 'cheese', 'noun', 'onomatopoeia', 'pickle', 'dragon'];
+	$data['nouns'] = ['potato', 'block', 'tree', 'explosion', 'fish', 'cheese', 'noun', 'onomatopoeia', 'pickle', 'dragon', 'octagon', 'hangover', 'shirt', 'garbage', 'velocity', 'toilet paper', 'objection'];
 
 	return $data;
 }
