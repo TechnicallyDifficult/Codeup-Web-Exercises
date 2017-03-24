@@ -17,13 +17,13 @@ $favoriteThings = ['video games', 'friends', 'imagination', 'art', 'music'];
 	</head>
 	<body>
 		<table>
-			<?php foreach ($favoriteThings as $thing) { ?>
+			<?php foreach ($favoriteThings as $thing) : ?>
 				<tr>
 					<td>
-						<?php echo $thing; ?>
+						<?= $thing; ?>
 					</td>
 				</tr>
-			<?php } ?>
+			<?php endforeach ?>
 		</table>
 	</body>
 </html>
