@@ -1,22 +1,38 @@
 <?php
 
+function checkLogin($logins)
+{
+	$username = isset($_POST['username']) ? $_POST['username'] : NULL;
+	$password = isset($_POST['password']) ? $_POST['password'] : NULL;
+
+	foreach ($logins as $login) {
+		if ($username === $login['user'] and $password === $login['pass']) {
+			$_SESSION['logged-in-user'] = $login['user'];
+			return;
+		}
+	}
+}
+
 function pageController()
 {
 	$data = [];
-	$data['username'] = isset($_POST['username']) ? $_POST['username'] : NULL;
-	$data['password'] = isset($_POST['password']) ? $_POST['password'] : NULL;
+
+	$data['logins'] = [['user' => 'guest', 'pass' => 'password'], ['user' => 'hide', 'pass' => 'seek']];
+
+	if (isset($_POST['username']) or isset($_POST['password'])) {
+		$data['error'] = 'Login Failed';
+	}
+
 	return $data;
 }
 
+session_start();
+
 extract(pageController());
 
-if ($username === 'guest' and $password === 'password') {
-	header('Location: ./authorized.php');
-} elseif ($username === '' or $password === '') {
-	$error = 'Username and password fields cannot be blank';
-} else {
-	$error = 'Login Failed';
-}
+checkLogin($logins);
+
+if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
 
 ?>
 
@@ -35,14 +51,20 @@ if ($username === 'guest' and $password === 'password') {
 		p {
 			margin-bottom: 20px;
 		}
+
+		h1 {
+			margin-top: 5px;
+			margin-bottom: 25px;
+		}
 	</style>
 </head>
 <body>
 	<main>
-		<?php if (is_string($username) or is_string($password)) : ?>
+		<h1>Log In</h1>
+		<?php if (isset($error)) : ?>
 			<div class="alert alert-danger alert-dismissable fade in">
 				<button class="close" data-dismiss="alert" aria-label="close">&times;</button>
-				<?= $error ?>
+				<?= $error; ?>
 			</div>
 		<?php endif; ?>
 		<form method="POST">
@@ -54,7 +76,7 @@ if ($username === 'guest' and $password === 'password') {
 				<label for="password">Password:</label>
 				<input type="password" id="password" name="password" placeholder="Password" class="form-control">
 			</p>
-				<button type="submit" class="btn btn-success">Login</button>
+				<button type="submit" class="btn btn-success">Log In</button>
 		</form>
 	</main>
 </body>
