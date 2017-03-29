@@ -65,13 +65,13 @@ checkLogin($logins);
 		label {
 			position: absolute;
 			font-weight: normal;
+			font-size: 14px;
 			color: #999;
 			top: 32px;
 			left: 13px;
-			transition-property: font-weight, font-size, color, top, left;
 			transition-duration: 200ms;
 			user-select: none;
-			cursor: text;
+			pointer-events: none;
 		}
 
 		input:focus + label, input:valid + label {
