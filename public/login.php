@@ -44,17 +44,13 @@ checkLogin($logins);
 	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style type="text/css">
-		@keyframes labelmove {
-			from {font-weight: 400; font-size: 14px; color: #999; top: 32px; left: 13px;}
-			to {font-weight: 700; font-size: 18px; color: #000; top: 0px; left: 0px;}
-		}
-
 		main {
 			margin: 20px;
 			padding: 20px;
 			border: 1px solid #CCCCCC;
 			border-radius: 5px;
 		}
+		
 		p {
 			padding-top: 25px;
 			margin-bottom: 20px;
@@ -65,18 +61,24 @@ checkLogin($logins);
 			margin-top: 5px;
 			margin-bottom: 25px;
 		}
+
 		label {
-			font-weight: normal;
 			position: absolute;
+			font-weight: normal;
+			color: #999;
 			top: 32px;
 			left: 13px;
-			color: #999;
-			animation: labelmove 200ms;
-			animation-play-state: paused;
-			animation-direction: alternate;
-			animation-iteration-count: infinite;
+			transition: all 200ms;
 			user-select: none;
 			cursor: text;
+		}
+
+		input:focus + label, input:valid + label {
+			font-weight: bold;
+			font-size: 18px;
+			color: black;
+			top: 0px;
+			left: 0px;
 		}
 	</style>
 </head>
@@ -91,12 +93,12 @@ checkLogin($logins);
 		<?php endif; ?>
 		<form method="POST">
 			<p>
+				<input type="text" name="username" id="username" class="form-control" required>
 				<label for="username">Username</label>
-				<input type="text" name="username" id="username" class="form-control">
 			</p>
 			<p>
+				<input type="password" id="password" name="password" class="form-control" required>
 				<label for="password">Password</label>
-				<input type="password" id="password" name="password" class="form-control">
 			</p>
 				<button type="submit" class="btn btn-success">Log In</button>
 		</form>
@@ -104,21 +106,4 @@ checkLogin($logins);
 </body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('input').focusin(function() {
-				if (!$(this).val()) {
-					$(this).parent().children('label').css('animation-play-state', 'running');
-				}
-			}).focusout(function() {
-				if (!$(this).val()) {
-					$(this).parent().children('label').css('animation-play-state', 'running');
-				}
-			})
-
-			$('label').on('animationiteration', function () {
-				$(this).css('animation-play-state', 'paused');
-			});
-		});
-	</script>
 </html>
