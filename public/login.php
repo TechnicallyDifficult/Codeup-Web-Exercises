@@ -107,9 +107,13 @@ checkLogin($logins);
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('input').focusin(function() {
-				$(this).parent().children('label').css('animation-play-state', 'running')
+				if (!$(this).val()) {
+					$(this).parent().children('label').css('animation-play-state', 'running');
+				}
 			}).focusout(function() {
-				$(this).parent().children('label').css('animation-play-state', 'running')
+				if (!$(this).val()) {
+					$(this).parent().children('label').css('animation-play-state', 'running');
+				}
 			})
 
 			$('label').on('animationiteration', function () {
