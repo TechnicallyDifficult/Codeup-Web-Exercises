@@ -42,6 +42,11 @@ if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
 	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style type="text/css">
+		@keyframes labelmove {
+			from {font-size: 14px; color: #999; top: 32px; left: 13px;}
+			to {font-size: 18px; color: #000; top: 0px; left: 0px;}
+		}
+
 		main {
 			margin: 20px;
 			padding: 20px;
@@ -49,12 +54,27 @@ if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
 			border-radius: 5px;
 		}
 		p {
+			padding-top: 25px;
 			margin-bottom: 20px;
+			position: relative;
 		}
 
 		h1 {
 			margin-top: 5px;
 			margin-bottom: 25px;
+		}
+		label {
+			font-weight: normal;
+			position: absolute;
+			top: 32px;
+			left: 13px;
+			color: #999;
+			animation: labelmove 200ms;
+			animation-play-state: paused;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			user-select: none;
+			cursor: text;
 		}
 	</style>
 </head>
@@ -69,12 +89,12 @@ if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
 		<?php endif; ?>
 		<form method="POST">
 			<p>
-				<label for="username">Username:</label>
-				<input type="text" name="username" id="username" placeholder="Username" class="form-control">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username" class="form-control">
 			</p>
 			<p>
-				<label for="password">Password:</label>
-				<input type="password" id="password" name="password" placeholder="Password" class="form-control">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" class="form-control">
 			</p>
 				<button type="submit" class="btn btn-success">Log In</button>
 		</form>
@@ -82,4 +102,17 @@ if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
 </body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('input').focusin(function() {
+				$(this).parent().children('label').css('animation-play-state', 'running')
+			}).focusout(function() {
+				$(this).parent().children('label').css('animation-play-state', 'running')
+			})
+
+			$('label').on('animationiteration', function () {
+				$(this).css('animation-play-state', 'paused');
+			});
+		});
+	</script>
 </html>
