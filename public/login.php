@@ -50,7 +50,7 @@ checkLogin($logins);
 			border: 1px solid #CCCCCC;
 			border-radius: 5px;
 		}
-		
+
 		p {
 			padding-top: 25px;
 			margin-bottom: 20px;
@@ -68,7 +68,8 @@ checkLogin($logins);
 			color: #999;
 			top: 32px;
 			left: 13px;
-			transition: all 200ms;
+			transition-property: font-weight, font-size, color, top, left;
+			transition-duration: 200ms;
 			user-select: none;
 			cursor: text;
 		}
@@ -93,11 +94,11 @@ checkLogin($logins);
 		<?php endif; ?>
 		<form method="POST">
 			<p>
-				<input type="text" name="username" id="username" class="form-control" required>
+				<input type="text" name="username" id="username" class="form-control" required oninvalid="this.setCustomValidity(' '); $(this).css('background-color', '#FFA09C');" oninput="this.setCustomValidity(''); $(this).css('background-color', 'white');">
 				<label for="username">Username</label>
 			</p>
 			<p>
-				<input type="password" id="password" name="password" class="form-control" required>
+				<input type="password" id="password" name="password" class="form-control" required oninvalid="this.setCustomValidity(' '); $(this).css('background-color', '#FFA09C');" oninput="this.setCustomValidity(''); $(this).css('background-color', 'white');">
 				<label for="password">Password</label>
 			</p>
 				<button type="submit" class="btn btn-success">Log In</button>
