@@ -1,9 +1,11 @@
 <?php
 
+require_once './functions.php';
+
 function pageController()
 {
 	$data = [];
-	$data['counter'] = isset($_GET['c']) ? $_GET['c'] : 0;
+	$data['counter'] = (int) inputGet('c');
 	return $data;
 }
 

@@ -1,9 +1,11 @@
 <?php
 
+require_once './functions.php';
+
 function checkLogin($logins)
 {
-	$username = isset($_POST['username']) ? $_POST['username'] : NULL;
-	$password = isset($_POST['password']) ? $_POST['password'] : NULL;
+	$username = inputGet('username');
+	$password = inputGet('password');
 
 	foreach ($logins as $login) {
 		if ($username === $login['user'] and $password === $login['pass']) {
@@ -19,7 +21,7 @@ function pageController()
 
 	$data['logins'] = [['user' => 'guest', 'pass' => 'password'], ['user' => 'hide', 'pass' => 'seek']];
 
-	if (isset($_POST['username']) or isset($_POST['password'])) {
+	if (!empty($_POST)) {
 		$data['error'] = 'Login Failed';
 	}
 
@@ -30,9 +32,9 @@ session_start();
 
 extract(pageController());
 
-checkLogin($logins);
-
 if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
+
+checkLogin($logins);
 
 ?>
 

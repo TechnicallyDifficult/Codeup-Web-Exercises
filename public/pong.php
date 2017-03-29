@@ -1,9 +1,11 @@
 <?php
 
+require_once './functions.php';
+
 function pageController()
 {
 	$data = [];
-	$data['counter'] = isset($_GET['c']) ? $_GET['c'] : 0;
+	$data['counter'] = (int) inputGet('c');
 	return $data;
 }
 
@@ -35,7 +37,7 @@ extract(pageController());
 </head>
 <body>
 	<h1>Pong</h1>
-	<h3><?= $counter ?></h3>
+	<h3><?= escape($counter) ?></h3>
 	<a href="./ping.php?c=<?= $counter + 1; ?>">HIT</a>
 	<a href="./ping.php?c=0">MISS</a>
 </body>
