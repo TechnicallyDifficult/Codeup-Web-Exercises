@@ -45,8 +45,8 @@ checkLogin($logins);
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style type="text/css">
 		@keyframes labelmove {
-			from {font-size: 14px; color: #999; top: 32px; left: 13px;}
-			to {font-size: 18px; color: #000; top: 0px; left: 0px;}
+			from {font-weight: 400; font-size: 14px; color: #999; top: 32px; left: 13px;}
+			to {font-weight: 700; font-size: 18px; color: #000; top: 0px; left: 0px;}
 		}
 
 		main {
