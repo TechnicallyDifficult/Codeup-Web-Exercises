@@ -1,11 +1,11 @@
 <?php
 
-require_once './functions.php';
+require_once '../Input.php';
 
 function pageController()
 {
 	$data = [];
-	$data['counter'] = (int) inputGet('c');
+	$data['counter'] = Input::get('c', 0);
 	return $data;
 }
 

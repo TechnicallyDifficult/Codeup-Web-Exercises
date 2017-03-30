@@ -1,11 +1,11 @@
 <?php
 
-require_once './functions.php';
+require_once '../Input.php';
 
 function checkLogin($logins)
 {
-	$username = inputGet('username');
-	$password = inputGet('password');
+	$username = Input::get('username');
+	$password = Input::get('password');
 
 	foreach ($logins as $login) {
 		if ($username === $login['user'] and $password === $login['pass']) {
@@ -19,7 +19,10 @@ function pageController()
 {
 	$data = [];
 
-	$data['logins'] = [['user' => 'guest', 'pass' => 'password'], ['user' => 'hide', 'pass' => 'seek']];
+	$data['logins'] = [
+		['user' => 'guest', 'pass' => 'password'],
+		['user' => 'hide', 'pass' => 'seek']
+	];
 
 	if (!empty($_POST)) {
 		$data['error'] = 'Login Failed';
