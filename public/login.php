@@ -1,28 +1,31 @@
 <?php
 
 require_once '../Input.php';
+require_once '../Auth.php';
 
-function checkLogin($logins)
+function checkLogin()
 {
 	$username = Input::get('username');
 	$password = Input::get('password');
 
-	foreach ($logins as $login) {
+	/*foreach ($logins as $login) {
 		if ($username === $login['user'] and $password === $login['pass']) {
 			$_SESSION['logged-in-user'] = $login['user'];
 			return;
 		}
-	}
+	}*/
+
+	Auth::attempt($username, $password);
 }
 
 function pageController()
 {
 	$data = [];
 
-	$data['logins'] = [
+	/*$data['logins'] = [
 		['user' => 'guest', 'pass' => 'password'],
 		['user' => 'hide', 'pass' => 'seek']
-	];
+	];*/
 
 	if (!empty($_POST)) {
 		$data['error'] = 'Login Failed';
@@ -35,9 +38,9 @@ session_start();
 
 extract(pageController());
 
-if (isset($_SESSION['logged-in-user'])) header('Location: ./authorized.php');
+checkLogin();
 
-checkLogin($logins);
+if (Auth::check()) header('Location: ./authorized.php');
 
 ?>
 

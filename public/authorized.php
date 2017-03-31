@@ -1,8 +1,10 @@
 <?php
 
+require_once '../Auth.php';
+
 session_start();
 
-if (!isset($_SESSION['logged-in-user'])) header('Location: ./login.php');
+if (!Auth::check()) header('Location: ./login.php');
 
 ?>
 
@@ -34,7 +36,7 @@ if (!isset($_SESSION['logged-in-user'])) header('Location: ./login.php');
 <body>
 	<main>
 		<p>Authorized</p>
-		<p><?= $_SESSION['logged-in-user']; ?></p>
+		<p><?= Auth::user(); ?></p>
 		<a href="./logout.php">Logout</a>
 	</main>
 </body>
