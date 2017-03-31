@@ -24,7 +24,7 @@ class Auth {
 
 	public static function check()
 	{
-		return (isset($_SESSION['LOGGED_IN_USER']) and $_SESSION['LOGGED_IN_USER'] === self::$username) ? true : false;
+		return (isset($_SESSION['LOGGED_IN_USER']) and $_SESSION['LOGGED_IN_USER'] === self::$username);
 	}
 
 	public static function user()
