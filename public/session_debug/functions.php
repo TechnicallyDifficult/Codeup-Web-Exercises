@@ -12,14 +12,13 @@ function isUserAuthenticated()
 
 function user()
 {
-    return $_SESSION['logged_in_user'];
+    return isUserAuthenticated() ? $_SESSION['logged_in_user'] : NULL;
 }
 
 function authenticate($username, $password)
 {
     if ($username == 'guest' && $password == 'password') {
         $_SESSION['logged_in_user'] = $username;
-        echo $_SESSION['logged_in_user'];
         return true;
     }
     return false;
@@ -32,7 +31,7 @@ function isPost()
 
 function input($key, $default = '')
 {
-    return isset($_POST[$key]) ? $_POST[$key] : $default;
+    return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default;
 }
 
 function clearSession()

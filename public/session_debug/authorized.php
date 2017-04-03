@@ -1,8 +1,10 @@
 <?php
 require_once 'functions.php';
+session_start();
+
 
 function pageController() {
-    if (isUserAuthenticated()) {
+    if (!isUserAuthenticated()) {
         redirect("login.php");
     }
     return ['username' => user(), 'title' => 'Welcome!!'];
