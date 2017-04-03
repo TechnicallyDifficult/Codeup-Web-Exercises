@@ -2,6 +2,7 @@
 
 require_once '../Input.php';
 require_once '../Auth.php';
+require_once '../Log.php';
 
 function checkLogin()
 {
@@ -15,7 +16,13 @@ function checkLogin()
 		}
 	}*/
 
-	Auth::attempt($username, $password);
+	if (Auth::attempt($username, $password)) {
+		$log->info("User \"$username\" logged in.");
+	} elseif ($username === Auth::$username) {
+		$log->error("User \"$username\" attempted login with incorrect password.");
+	} else {
+		$log->error("Login attempt with unrecognized username: $username");
+	}
 }
 
 function pageController()
@@ -30,6 +37,8 @@ function pageController()
 	if (!empty($_POST)) {
 		$data['error'] = 'Login Failed';
 	}
+
+	$data['log'] = new Log('login-attempts');
 
 	return $data;
 }

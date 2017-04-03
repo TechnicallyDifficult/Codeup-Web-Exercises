@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Log.php';
-
 class Auth {
 
 	public static $username = 'guest';
@@ -9,16 +7,13 @@ class Auth {
 
 	public static function attempt($username, $password)
 	{
-		$log = new Log('login-attempts');
 		if ($username === NULL or $password === NULL) {
 			return;
 		} elseif ($username === self::$username and password_verify($password, self::$password)) {
 			$_SESSION['LOGGED_IN_USER'] = self::$username;
-			$log->info("User \"$username\" logged in.");
-		} elseif ($username === self::$username) {
-			$log->error("User \"$username\" attempted login with incorrect password.");
+			return true;
 		} else {
-			$log->error("Login attempt with unrecognized username: $username");
+			return false;
 		}
 	}
 
@@ -34,10 +29,8 @@ class Auth {
 
 	public static function logout()
 	{
-		$log = new Log('login-attempts');
 		session_unset();
 		session_regenerate_id(true);
-		$log->info("User {$_SESSION['LOGGED_IN_USER']} logged out.");
 	}
 
 }

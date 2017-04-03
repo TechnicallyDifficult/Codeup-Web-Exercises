@@ -1,8 +1,13 @@
 <?php
 
 require_once '../Auth.php';
+require_once '../Log.php';
 
 session_start();
+
+$log = new Log('login-attempts');
+
+$log->info("User {$_SESSION['LOGGED_IN_USER']} logged out.");
 
 Auth::logout();
 
