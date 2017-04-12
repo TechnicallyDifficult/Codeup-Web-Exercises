@@ -1,6 +1,7 @@
 <?php
 
 require_once '../Input.php';
+require_once '../Functions.php';
 
 function pageController()
 {
@@ -14,9 +15,27 @@ function pageController()
 
 	$limit = Input::get('l', 4);
 
-	$data['parks'] = $dbc->query("SELECT * FROM national_parks LIMIT $limit OFFSET $offset")->fetchAll(PDO::FETCH_ASSOC);
+	$query = <<<SQL
+	SELECT *
+	FROM national_parks
+	LIMIT ?, ?;
+SQL;
 
-	$rows = $dbc->query("SELECT * FROM national_parks;")->rowCount();
+	$stmt = $dbc->prepare($query);
+
+	Functions::bindAll([$offset, $limit], $stmt);
+
+	$stmt->execute();
+
+	$data['parks'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	$data['headers'] = ['Name', 'Location', 'Date Established', 'Area in Acres', 'Description'];
+
+	Functions::bindAll([0, PHP_INT_MAX], $stmt);
+
+	$stmt->execute();
+
+	$rows = $stmt->rowCount();
 
 	$data['pages'] = $rows === 0 ? 1 : (int) ceil($rows / 4);
 
@@ -50,6 +69,10 @@ extract(pageController());
 		#next {
 			float: right;
 		}
+		
+		th {
+			text-align: center;
+		}
 
 	</style>
 </head>
@@ -57,22 +80,7 @@ extract(pageController());
 	<main>
 		<table class="table table-bordered">
 			<h1>National Parks</h1>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Location</th>
-				<th>Date Established</th>
-				<th>Area in Acres</th>
-			</tr>
-			<?php foreach ($parks as $park) : ?>
-				<tr>
-					<?php foreach ($park as $key => $attribute) : ?>
-						<td>
-							<?= $key === 'id' ?: $attribute; ?>
-						</td>
-					<?php endforeach; ?>
-				</tr>
-			<?php endforeach; ?>
+			<?= Functions::renderTable($parks, $headers, ['id']); ?>
 		</table>
 		<?php if ($pageno > 1): ?>
 			<a href="./national_parks.php?p=<?= $pageno - 1 ?>" id="prev">&#60; Prev</a>
