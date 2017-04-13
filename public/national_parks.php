@@ -42,6 +42,8 @@ SQL;
 	return $data;
 }
 
+// function 
+
 extract(pageController());
 
 ?>
@@ -95,7 +97,6 @@ extract(pageController());
 		}
 
 		.add {
-			height: 100%;
 			width: 100%;
 			background-color: transparent;
 			border: none;
@@ -124,30 +125,35 @@ extract(pageController());
 </head>
 <body>
 	<main>
-		<table class="table table-bordered table-striped">
-			<h1>National Parks</h1>
-			<?= Functions::renderTable($parks, $headers, ['id']); ?>
-			<tr id="add-row">
-				<td colspan="100%">
-					<a id="add">Add</a>
-				</td>
-				<td class="hidden">
-					<textarea class="add" id="add-name"></textarea>
-				</td>
-				<td class="hidden">
-					<textarea class="add" id="add-location"></textarea>
-				</td>
-				<td class="hidden">
-					<textarea class="add" id="add-date"></textarea>
-				</td>
-				<td class="hidden">
-					<textarea class="add" id="add-area"></textarea>
-				</td>
-				<td class="hidden">
-					<textarea class="add" id="add-description"></textarea>
-				</td>
-			</tr>
-		</table>
+		<form action="./national_parks.php" method="POST">
+			<table class="table table-bordered table-striped">
+				<h1>National Parks</h1>
+				<?= Functions::renderTable($parks, $headers, ['id']); ?>
+				<tr id="add-row">
+					<td colspan="100%">
+						<a id="add">Add</a>
+					</td>
+					<td class="hidden">
+						<textarea class="add" rows="1" id="add-name" required></textarea>
+					</td>
+					<td class="hidden">
+						<textarea class="add" rows="1" id="add-location" required></textarea>
+					</td>
+					<td class="hidden">
+						<textarea class="add" rows="1" id="add-date" required></textarea>
+					</td>
+					<td class="hidden">
+						<textarea class="add" rows="1" id="add-area" required></textarea>
+					</td>
+					<td class="hidden">
+						<textarea class="add" rows="1" id="add-description"></textarea>
+					</td>
+				</tr>
+			</table>
+			<div class="text-center">
+				<button type="submit" class="hidden btn btn-primary" id="submit">Submit</button>
+			</div>
+		</form>
 		<?php if ($pageno > 1): ?>
 			<a href="./national_parks.php?p=<?= $pageno - 1 ?>" id="prev">&#60; Prev</a>
 		<?php endif ?>
@@ -160,7 +166,12 @@ extract(pageController());
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.20/autosize.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			var limit = 80;
+			var limit = 80,
+				evt = document.createEvent('Event'),
+				oldValue_date = '',
+				oldValue_area = '';
+			evt.initEvent('autosize:update');
+
 			$('.description').each(function(index, element) {
 				if (element.innerText.length > limit) {
 					element.innerHTML = element.innerHTML.substring(0, limit) + '<span class="overflow">' + element.innerHTML.substring(limit) + '</span><span>...</span>';
@@ -173,11 +184,65 @@ extract(pageController());
 
 			$('#add').click(function() {
 				$('#add-row').children().toggleClass('hidden');
+				$('button').toggleClass('hidden');
 			});
 
-			$('.add').keydown(function(e) {
-				if (e.keyCode == 13) {
-					e.preventDefault();
+			$('.add').on('input', function(e) {
+				this.value = this.value.replace(/\n/g, '');
+				this.dispatchEvent(evt);
+			}).keypress(function(e) {
+				if (e.key === 'Enter') e.preventDefault();
+				this.setCustomValidity('');
+				$(this).parent().css('background-color', 'initial');
+			}).on('invalid', function(e) {
+				this.setCustomValidity(' ');
+				$(this).parent().css('background-color', '#FFA09C');
+			}).on('autosize:resized', function(e) {
+				var largest = $(this).parent('td').index();
+				$('#add-row').children('td').each(function(index, el) {
+					if (index === largest) {
+						$(el).children('textarea').css('min-height', 'initial');
+					} else if (index !== 0) {
+						$(el).children('textarea').css('min-height', $('#add-row').children('td').eq(largest).children('textarea').css('height'));
+					}
+				});
+			});
+
+			$('#add-date').on('input', function(e) {
+				this.value = this.value.replace(/[^\d-]/g, '');
+				if (!/^(?:\d{0,4}|\d{4}-(?:\d{1,2}|\d{2}-(?:\d{1,2})?)?)$/.test(this.value)) {
+					this.value = oldValue_date;
+				} else {
+					oldValue_date = this.value;
+				}
+			}).keypress(function(e) {
+				if (/[^\d-]/.test(e.key)) e.preventDefault();
+			}).change(function() {
+				if (!(/^\d{4}-\d{2}-\d{2}$/.test(this.value) || this.value === '')) {
+					this.setCustomValidity(' ');
+					$(this).parent().css('background-color', '#F2BB6E');
+				}
+			});
+
+			$('#add-area').on('input', function() {
+				this.value = this.value.replace(/[^\d\.]/g, '');
+				this.value = this.value.replace(/^00+/, '0');
+				this.value = this.value.replace(/^0(\d)/, '$1');
+				this.value = this.value.replace(/^\./, '0.');
+			}).keypress(function(e) {
+				if (!/[\d\.]/.test(e.key) || (/\./.test(this.value) && e.key == '.')) e.preventDefault();
+			}).change(function() {
+				if (/\./.test(this.value)) {
+					var decimals = this.value.substring(this.value.indexOf('.') + 1);
+					decimals = decimals.replace(/\./g, '');
+					decimals = decimals.replace(/0+$/, '');
+					this.value = this.value.substring(0, this.value.indexOf('.') + 1) + decimals;
+				}
+				this.value = this.value.replace(/\.$/, '');
+				this.value = this.value.replace(/^\./, '0.');
+				if (!(/^\d+(?:\.\d+)?$/.test(this.value) || this.value === '')) {
+					this.setCustomValidity(' ');
+					$(this).parent().css('background-color', '#F2BB6E');
 				}
 			});
 
