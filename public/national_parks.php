@@ -2,11 +2,10 @@
 
 require_once '../Input.php';
 require_once '../Functions.php';
+require_once '../db_connect.php';
 
-function pageController()
+function pageController($dbc)
 {
-	require_once '../db_connect.php';
-
 	$data = [];
 
 	$data['pageno'] = Input::get('p', 1);
@@ -42,9 +41,56 @@ SQL;
 	return $data;
 }
 
-// function 
+var_dump($_POST);
 
-extract(pageController());
+function validateDate($date)
+{
+	$d = DateTime::createFromFormat('Y-m-d', $date);
+	return $d && $d->format('Y-m-d') === $date;
+}
+
+function getNewRow() {
+	$row = [];
+	$row['name'] = Input::get('name');
+	$row['location'] = Input::get('location');
+	$row['date_established'] = Input::get('date_established');
+	$row['area_in_acres'] = Input::get('area_in_acres');
+	$row['description'] = Input::get('description');
+
+	foreach ($row as $key => &$column) {
+		$column = Functions::escape($column);
+		if (empty($column) and $key !== 'description') return NULL;
+	}
+
+	if (empty($row['description'])) $row['description'] = NULL;
+	$row['area_in_acres'] = (float) $row['area_in_acres'];
+
+	if (!validateDate($row['date_established'])) return NULL;
+	
+	return $row;
+
+}
+
+function add($dbc) {
+	$row = getNewRow();
+
+	if ($row === NULL) return;
+
+	$query = <<<SQL
+	INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
+	VALUES (:name, :location, :date_established, :area_in_acres, :description);
+SQL;
+
+	$stmt = $dbc->prepare($query);
+
+	Functions::bindAll($row, $stmt);
+
+	$stmt->execute();
+}
+
+extract(pageController($dbc));
+
+if (!empty($_POST)) add($dbc);
 
 ?>
 
@@ -134,19 +180,19 @@ extract(pageController());
 						<a id="add">Add</a>
 					</td>
 					<td class="hidden">
-						<textarea class="add" rows="1" id="add-name" required></textarea>
+						<textarea class="add" rows="1" id="add-name" name="name" required></textarea>
 					</td>
 					<td class="hidden">
-						<textarea class="add" rows="1" id="add-location" required></textarea>
+						<textarea class="add" rows="1" id="add-location" name="location" required></textarea>
 					</td>
 					<td class="hidden">
-						<textarea class="add" rows="1" id="add-date" required></textarea>
+						<textarea class="add" rows="1" id="add-date" name="date_established" required></textarea>
 					</td>
 					<td class="hidden">
-						<textarea class="add" rows="1" id="add-area" required></textarea>
+						<textarea class="add" rows="1" id="add-area" name="area_in_acres" required></textarea>
 					</td>
 					<td class="hidden">
-						<textarea class="add" rows="1" id="add-description"></textarea>
+						<textarea class="add" rows="1" id="add-description" name="description"></textarea>
 					</td>
 				</tr>
 			</table>
@@ -170,7 +216,32 @@ extract(pageController());
 				evt = document.createEvent('Event'),
 				oldValue_date = '',
 				oldValue_area = '';
+
 			evt.initEvent('autosize:update');
+
+			function validateDate(date) {
+				var max = 0;
+				switch (date.substring(5, 7)) {
+					case '02':
+						max = 29;
+						break;
+					case '04':
+					case '06':
+					case '09':
+					case '11':
+						max = 30;
+						break;
+					default:
+						max = 31;
+						break;
+				}
+
+				if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || /\b(?:00){1,2}\b/.test(date) || date.substring(5, 7) > 12 || date.substring(8) > max) {
+					return false;
+				}
+
+				return true;
+			}
 
 			$('.description').each(function(index, element) {
 				if (element.innerText.length > limit) {
@@ -190,10 +261,10 @@ extract(pageController());
 			$('.add').on('input', function(e) {
 				this.value = this.value.replace(/\n/g, '');
 				this.dispatchEvent(evt);
-			}).keypress(function(e) {
-				if (e.key === 'Enter') e.preventDefault();
 				this.setCustomValidity('');
 				$(this).parent().css('background-color', 'initial');
+			}).keypress(function(e) {
+				if (e.key === 'Enter') e.preventDefault();
 			}).on('invalid', function(e) {
 				this.setCustomValidity(' ');
 				$(this).parent().css('background-color', '#FFA09C');
@@ -218,7 +289,7 @@ extract(pageController());
 			}).keypress(function(e) {
 				if (/[^\d-]/.test(e.key)) e.preventDefault();
 			}).change(function() {
-				if (!(/^\d{4}-\d{2}-\d{2}$/.test(this.value) || this.value === '')) {
+				if (!validateDate(this.value) && this.value !== '') {
 					this.setCustomValidity(' ');
 					$(this).parent().css('background-color', '#F2BB6E');
 				}
@@ -240,7 +311,7 @@ extract(pageController());
 				}
 				this.value = this.value.replace(/\.$/, '');
 				this.value = this.value.replace(/^\./, '0.');
-				if (!(/^\d+(?:\.\d+)?$/.test(this.value) || this.value === '')) {
+				if (!/^\d+(?:\.\d+)?$/.test(this.value) && this.value !== '') {
 					this.setCustomValidity(' ');
 					$(this).parent().css('background-color', '#F2BB6E');
 				}
