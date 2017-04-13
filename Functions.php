@@ -34,23 +34,23 @@ class Functions {
 		}
 	}
 
-	public static function renderTable($array, $headers = [], $exceptions = [])
+	public static function renderTable($content, $headers = [], $exceptions = [])
 	{
 		$html = '';
 
 		if (!empty($headers)) {
-			$html .= '<tr>';
-			foreach ($headers as $header) {
-				$html .= '<th>' . self::escape($header) . '</th>';
+			$html .= '<tr class="table-headers">';
+			foreach ($headers as $key => $header) {
+				$html .= "<th class=\"table-header $key\">" . self::escape($header) . '</th>';
 			}
 			$html .= '</tr>';
 		}
 
-		foreach ($array as $items) {
+		foreach ($content as $row) {
 			$html .= '<tr>';
-			foreach ($items as $key => $item) {
+			foreach ($row as $key => $column) {
 				if (in_array($key, $exceptions, true)) continue;
-				$html .= '<td>' . self::escape($item) . '</td>';
+				$html .= "<td class=\"$key\">" . self::escape($column) . '</td>';
 			}
 			$html .= '</tr>';
 		}

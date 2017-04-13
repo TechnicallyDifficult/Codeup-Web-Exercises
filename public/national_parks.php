@@ -29,7 +29,7 @@ SQL;
 
 	$data['parks'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$data['headers'] = ['Name', 'Location', 'Date Established', 'Area in Acres', 'Description'];
+	$data['headers'] = ['name' => 'Name', 'location' => 'Location', 'date_established' => 'Date Established', 'area_in_acres' => 'Area in Acres', 'description' => 'Description'];
 
 	Functions::bindAll([0, PHP_INT_MAX], $stmt);
 
@@ -55,11 +55,53 @@ extract(pageController());
 
 		main {
 			margin: auto;
-			width: 75%;
+			width: 90%;
 		}
 
-		h1 {
-			text-align: center;
+		a {
+			cursor: pointer;
+		}
+
+		textarea:focus {
+			outline: none;
+		}
+
+		.table-headers>th.table-header {
+			vertical-align: middle;
+		}
+
+		.overflow, .expanded + span {
+			display: none;
+		}
+
+		.expanded {
+			display: initial;
+		}
+
+		.name {
+			width: 15%;
+		}
+
+		.location {
+			width: 20%;
+		}
+
+		.date_established {
+			width: 6em;
+		}
+
+		.area_in_acres {
+			width: 8em;
+		}
+
+		.add {
+			height: 100%;
+			width: 100%;
+			background-color: transparent;
+			border: none;
+			resize: none;
+			overflow: visible;
+			padding: 8px;
 		}
 
 		#prev {
@@ -69,18 +111,42 @@ extract(pageController());
 		#next {
 			float: right;
 		}
+
+		#add-row>td ~ td {
+			padding: 0;
+			overflow: auto;
+		}
 		
-		th {
+		h1, th, #add-row>td:first-child {
 			text-align: center;
 		}
-
 	</style>
 </head>
 <body>
 	<main>
-		<table class="table table-bordered">
+		<table class="table table-bordered table-striped">
 			<h1>National Parks</h1>
 			<?= Functions::renderTable($parks, $headers, ['id']); ?>
+			<tr id="add-row">
+				<td colspan="100%">
+					<a id="add">Add</a>
+				</td>
+				<td class="hidden">
+					<textarea class="add" id="add-name"></textarea>
+				</td>
+				<td class="hidden">
+					<textarea class="add" id="add-location"></textarea>
+				</td>
+				<td class="hidden">
+					<textarea class="add" id="add-date"></textarea>
+				</td>
+				<td class="hidden">
+					<textarea class="add" id="add-area"></textarea>
+				</td>
+				<td class="hidden">
+					<textarea class="add" id="add-description"></textarea>
+				</td>
+			</tr>
 		</table>
 		<?php if ($pageno > 1): ?>
 			<a href="./national_parks.php?p=<?= $pageno - 1 ?>" id="prev">&#60; Prev</a>
@@ -91,5 +157,32 @@ extract(pageController());
 	</main>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.20/autosize.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var limit = 80;
+			$('.description').each(function(index, element) {
+				if (element.innerText.length > limit) {
+					element.innerHTML = element.innerHTML.substring(0, limit) + '<span class="overflow">' + element.innerHTML.substring(limit) + '</span><span>...</span>';
+					$(element).css('cursor', 'pointer');
+					$(element).click(function(event) {
+						$(this).children('.overflow').toggleClass('expanded');
+					});
+				}
+			});
+
+			$('#add').click(function() {
+				$('#add-row').children().toggleClass('hidden');
+			});
+
+			$('.add').keydown(function(e) {
+				if (e.keyCode == 13) {
+					e.preventDefault();
+				}
+			});
+
+			autosize($('.add'));
+		});
+	</script>
 </body>
 </html>
