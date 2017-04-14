@@ -30,12 +30,15 @@ $(document).ready(function() {
 		return true;
 	}
 
-	$('.description').each(function(index, element) {
-		if (element.innerText.length > limit) {
-			element.innerHTML = element.innerHTML.substring(0, limit) + '<span class="overflow">' + element.innerHTML.substring(limit) + '</span><span>...</span>';
-			$(element).css('cursor', 'pointer');
-			$(element).click(function(event) {
-				$(this).children('.overflow').toggleClass('expanded');
+	function isEllipsisActive(e) {
+	     return (e.offsetWidth < e.scrollWidth);
+	}
+
+	$('.text-collapse').each(function(index, el) {
+		if (isEllipsisActive(el)) {
+			$(el).children('.content-text').css('cursor', 'pointer')
+			.click(function() {
+				$(this).parent('td').toggleClass('text-collapse');
 			});
 		}
 	});
