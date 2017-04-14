@@ -71,7 +71,7 @@ table {
 
 #add-row>td ~ td {
 	padding: 0;
-	overflow: auto;
+	overflow: hidden;
 }
 
 h1, th, #add-row>td:first-child {
