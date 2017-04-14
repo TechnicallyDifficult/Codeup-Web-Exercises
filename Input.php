@@ -25,6 +25,11 @@ class Input
         return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default;
     }
 
+    public static function escape($input)
+    {
+        return htmlspecialchars(strip_tags($input));
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //
     // The Input class should not ever be instantiated, so we prevent the    //

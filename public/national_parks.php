@@ -1,94 +1,38 @@
 <?php
 
 require_once '../Input.php';
-require_once '../Functions.php';
-require_once '../db_connect.php';
+require_once '../Park.php';
 
-function pageController($dbc)
+function pageController()
 {
 	$data = [];
 
 	$data['pageno'] = Input::get('p', 1);
 
-	$offset = ($data['pageno'] - 1) * 4;
+	$data['parks'] = Park::paginate($data['pageno']);
 
-	$limit = Input::get('l', 4);
-
-	$query = <<<SQL
-	SELECT *
-	FROM national_parks
-	LIMIT ?, ?;
-SQL;
-
-	$stmt = $dbc->prepare($query);
-
-	Functions::bindAll([$offset, $limit], $stmt);
-
-	$stmt->execute();
-
-	$data['parks'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	$data['headers'] = ['name' => 'Name', 'location' => 'Location', 'date_established' => 'Date Established', 'area_in_acres' => 'Area in Acres', 'description' => 'Description'];
-
-	Functions::bindAll([0, PHP_INT_MAX], $stmt);
-
-	$stmt->execute();
-
-	$rows = $stmt->rowCount();
+	$rows = Park::count();
 
 	$data['pages'] = $rows === 0 ? 1 : (int) ceil($rows / 4);
 
 	return $data;
 }
 
-function validateDate($date)
-{
-	$d = DateTime::createFromFormat('Y-m-d', $date);
-	return $d && $d->format('Y-m-d') === $date;
+extract(pageController());
+
+if (!empty($_POST)) {
+	$parkValues = [
+		'name' => Input::escape(Input::get('name')),
+		'location' => Input::escape(Input::get('location')),
+		'date_established' => Input::escape(Input::get('date_established')),
+		'area_in_acres' => Input::escape(Input::get('area_in_acres')),
+		'description' => Input::escape(Input::get('description'))
+	];
+
+	$newPark = new Park($parkValues);
+
+	$newPark->insert();
 }
-
-function getNewRow() {
-	$row = [];
-	$row['name'] = Input::get('name');
-	$row['location'] = Input::get('location');
-	$row['date_established'] = Input::get('date_established');
-	$row['area_in_acres'] = Input::get('area_in_acres');
-	$row['description'] = Input::get('description');
-
-	foreach ($row as $key => &$column) {
-		$column = Functions::escape($column);
-		if (empty($column) and $key !== 'description') return NULL;
-	}
-
-	if (empty($row['description'])) $row['description'] = NULL;
-	$row['area_in_acres'] = (float) $row['area_in_acres'];
-
-	if (!validateDate($row['date_established'])) return NULL;
-	
-	return $row;
-
-}
-
-function add($dbc) {
-	$row = getNewRow();
-
-	if ($row === NULL) return;
-
-	$query = <<<SQL
-	INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
-	VALUES (:name, :location, :date_established, :area_in_acres, :description);
-SQL;
-
-	$stmt = $dbc->prepare($query);
-
-	Functions::bindAll($row, $stmt);
-
-	$stmt->execute();
-}
-
-extract(pageController($dbc));
-
-if (!empty($_POST)) add($dbc);
 
 ?>
 
@@ -104,7 +48,42 @@ if (!empty($_POST)) add($dbc);
 		<form action="./national_parks.php" method="POST">
 			<table class="table table-bordered table-striped">
 				<h1>National Parks</h1>
-				<?= Functions::renderTable($parks, $headers, ['id']); ?>
+				<tr class="table-headers">
+					<th class="table-header name">Name</th>
+					<th class="table-header location">Location</th>
+					<th class="table-header date_established">Date Established</th>
+					<th class="table-header area_in_acres">Area in Acres</th>
+					<th class="table-header description">Description</th>
+				</tr>
+					<?php foreach ($parks as $park): ?>
+						<tr class="park">
+							<td class="name text-collapse">
+								<span class="content-text">
+									<?php echo $park->name ?>
+								</span>
+							</td>
+							<td class="location text-collapse">
+								<span class="content-text">
+									<?php echo $park->location ?>
+								</span>
+							</td>
+							<td class="date_established text-collapse">
+								<span class="content-text">
+									<?php echo $park->date_established ?>
+								</span>
+							</td>
+							<td class="area_in_acres text-collapse">
+								<span class="content-text">
+									<?php echo $park->area_in_acres ?>
+								</span>
+							</td>
+							<td class="description text-collapse">
+								<span class="content-text">
+									<?php echo $park->description ?>
+								</span>
+							</td>
+						</tr>
+					<?php endforeach ?>
 				<tr id="add-row">
 					<td colspan="100%">
 						<a id="add">Add</a>
