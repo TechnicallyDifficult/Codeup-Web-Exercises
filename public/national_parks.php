@@ -22,10 +22,10 @@ extract(pageController());
 
 if (!empty($_POST)) {
 	$parkValues = [
-		'name' => Input::escape(Input::get('name')),
-		'location' => Input::escape(Input::get('location')),
-		'date_established' => Input::escape(Input::get('date_established')),
-		'area_in_acres' => Input::escape(Input::get('area_in_acres')),
+		'name' => Input::escape(Input::getString('name')),
+		'location' => Input::escape(Input::getString('location')),
+		'date_established' => Input::escape(Input::getDate('date_established')),
+		'area_in_acres' => Input::escape(Input::getNumber('area_in_acres')),
 		'description' => Input::escape(Input::get('description'))
 	];
 

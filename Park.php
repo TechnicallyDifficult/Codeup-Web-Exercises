@@ -135,12 +135,6 @@ class Park {
 		$this->description = isset($park['description']) ? $park['description'] : NULL;
 	}
 
-	public function validateDate()
-	{
-		$d = DateTime::createFromFormat('Y-m-d', $this->date);
-		return $d && $d->format('Y-m-d') === $this->date;
-	}
-
 	/**
 	 * inserts a record into the database
 	 */
